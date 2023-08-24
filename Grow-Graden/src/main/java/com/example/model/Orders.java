@@ -1,13 +1,14 @@
 package com.example.model;
 
 import java.time.LocalDate;
-import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -38,7 +39,12 @@ public class Orders {
 	@NotNull(message = "cost cannot be null.")
 	private Double totalCost;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Planter> planters;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	@ManyToOne
+	@JoinColumn(name = "order_id")
+	private Product products;
 
 }

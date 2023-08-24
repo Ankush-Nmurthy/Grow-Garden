@@ -49,12 +49,6 @@ public class Planter {
 	@NotNull(message = "provide a valid cost for the planter other than null.")
 	private Double planterCost;
 	
-	@OneToMany(mappedBy = "planter",cascade =  CascadeType.ALL)
-	private List<Plant> plants;
-	
-	@OneToMany(mappedBy = "planter",cascade =  CascadeType.ALL)
-	private List<Seed> seeds;
-	
 	@ManyToOne
 	@JoinColumn(name = "user_Id")
 	private User user;

@@ -1,6 +1,7 @@
 package com.example.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -8,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embedded;
@@ -15,6 +17,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -72,5 +75,22 @@ public class User {
 	private LocalDateTime lastModifiedDate;
 	
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-	private List<Planter> planters;
+	private List<Product> productList;
+	
+	@Embedded
+	@ElementCollection
+	@CollectionTable(name = "payment_Information",joinColumns = @JoinColumn(name = "user_id"))
+	private List<PaymentInformation> payments = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	private List<Orders> orders;
+	
+	@OneToMany(mappedBy= "user", cascade = CascadeType.ALL)
+	private List<Rating> ratings;
+	
+	@OneToMany(mappedBy= "user", cascade = CascadeType.ALL)
+	private List<Review> review;
+	
+	@OneToMany(mappedBy= "user", cascade = CascadeType.ALL)
+	private List<Planter> planter;
 }
