@@ -1,10 +1,11 @@
-package com.example.growgarden.service;
+package com.example.service;
 
-import org.apache.catalina.User;
 
-import com.example.growgarden.exception.UserException;
-import com.example.growgarden.request.LoginRequest;
-import com.example.growgarden.responce.AuthResponse;
+
+import com.example.exception.UserException;
+import com.example.model.User;
+import com.example.request.LoginRequest;
+import com.example.responce.AuthResponse;
 
 public interface UserService {
 	

@@ -1,8 +1,6 @@
-package com.example.growgarden.service;
+package com.example.service;
 
 import java.util.Optional;
-
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -12,13 +10,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.growgarden.config.JwtProvider;
-import com.example.growgarden.exception.UserException;
-import com.example.growgarden.repository.UserRepository;
-import com.example.growgarden.request.LoginRequest;
-import com.example.growgarden.responce.AuthResponse;
+import com.example.config.JwtProvider;
+import com.example.exception.UserException;
+import com.example.model.User;
+import com.example.repository.UserRepository;
+import com.example.request.LoginRequest;
+import com.example.responce.AuthResponse;
 
-@Service
+@Service	
 public class UserServiceImpl implements UserService {
 
 	private UserRepository userRepository;

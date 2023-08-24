@@ -1,4 +1,4 @@
-package com.example.growgarden.exception;
+package com.example.exception;
 
 public class UserException extends RuntimeException{
 

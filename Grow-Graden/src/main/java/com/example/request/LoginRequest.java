@@ -1,4 +1,4 @@
-package com.example.growgarden.request;
+package com.example.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

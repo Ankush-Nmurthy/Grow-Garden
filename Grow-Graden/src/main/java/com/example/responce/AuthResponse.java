@@ -1,4 +1,4 @@
-package com.example.growgarden.responce;
+package com.example.responce;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

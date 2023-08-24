@@ -1,4 +1,4 @@
-package com.example.growgarden.config;
+package com.example.config;
 
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties.Jwt;
 

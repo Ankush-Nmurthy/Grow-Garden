@@ -1,16 +1,18 @@
-package com.example.growgarden.service;
+package com.example.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.growgarden.repository.UserRepository;
+import com.example.model.User;
+import com.example.repository.UserRepository;
 
 @Service
 public class CustomeUserServiceImpl implements UserDetailsService {

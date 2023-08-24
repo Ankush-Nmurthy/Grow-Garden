@@ -1,4 +1,4 @@
-package com.example.growgarden.config;
+package com.example.config;
 
 import java.io.IOException;
 import java.util.List;
