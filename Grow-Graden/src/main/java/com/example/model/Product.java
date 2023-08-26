@@ -51,8 +51,9 @@ public class Product {
 	@NotBlank(message = "provide the difficulty level of growing.")
 	private String difficultyLevel;
 
-	@OneToMany(mappedBy = "products",cascade = CascadeType.ALL)
-	private List<Orders> orders;
+	//product should not have the relation b/w orders but it requires to have relation only with rating and review.
+//	@OneToMany(mappedBy = "products",cascade = CascadeType.ALL)
+//	private List<Orders> orders;
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private List<Review> reviews;
@@ -60,7 +61,13 @@ public class Product {
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private List<Rating> ratings;
 	
+	
+	//only user needs product information but product in return does not need user information
+	//One TO many byDirectional relation is not needed here.
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+	
+	//no need to have a bi-direction relation because any way user will be having the information of the 
+		//products he had ordered.
 }

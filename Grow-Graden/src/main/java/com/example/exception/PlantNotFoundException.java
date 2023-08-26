@@ -1,6 +1,6 @@
 package com.example.exception;
 
-public class PlantNotFoundException extends Exception {
+public class PlantNotFoundException extends RuntimeException {
 
 	public PlantNotFoundException() {
 

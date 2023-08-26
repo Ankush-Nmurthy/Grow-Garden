@@ -1,8 +1,7 @@
 package com.example.service;
 
-
-
 import com.example.exception.UserException;
+import com.example.model.Address;
 import com.example.model.User;
 import com.example.request.LoginRequest;
 import com.example.responce.AuthResponse;
@@ -35,5 +34,11 @@ public interface UserService {
 	 * @throws UserException
 	 */
 	public User findUserProfileByJwt(String jwt) throws UserException;
-
+	
+	/**
+	 * This method allows user to add the multiple address to his account.
+	 * @param address
+	 * @return String
+	 */
+	String addAddressToUserAccount(Integer userId,Address address);
 }
