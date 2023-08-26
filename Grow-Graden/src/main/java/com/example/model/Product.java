@@ -1,7 +1,13 @@
 package com.example.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
@@ -32,7 +38,7 @@ public class Product {
 	private Integer productId;
 
 	@NotBlank(message = "provide Common name of the plant.")
-	private String commonName;
+	private String name;
 
 	@NotBlank(message = "provide the temperature which is required to grow this flower.")
 	private String temperature;
@@ -48,19 +54,38 @@ public class Product {
 	@NotNull(message = "plant cost cannot be null.")
 	private Double cost;
 
+	private Integer discountedPrice;
+
+	private Integer discountPercent;
+	
+	private Integer quantity;
+
 	@NotBlank(message = "provide the difficulty level of growing.")
 	private String difficultyLevel;
 
-	@OneToMany(mappedBy = "products",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "products", cascade = CascadeType.ALL)
 	private List<Orders> orders;
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private List<Review> reviews;
-	
+
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private List<Rating> ratings;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private Category category;
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+
+	@CreationTimestamp
+	@Column(updatable = false)
+	private LocalDateTime createdAt;
+
+	@UpdateTimestamp
+	@Column(insertable = false)
+	private LocalDateTime lastModifiedDate;
+
 }

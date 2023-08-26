@@ -3,34 +3,37 @@ package com.example.model;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@DiscriminatorValue("plant")
-public class Plant extends Product{
-
-	@NotNull(message = "plant height cannot be null.")
-	private Integer plantHeight;
+@Entity
+public class Category {
 	
-	@NotBlank(message = "provide the plants spread value.")
-	private String plantSpread;
-
-
-	@NotBlank(message = "provide the type of plant.")
-	private String typeOfPlant;
+	@Id
+	@GeneratedValue(strategy =  GenerationType.IDENTITY)
+	private Long id;
 	
 	
+	@NotBlank
+	@Size(max = 50)
+	private String name;
+	
+	@OneToMany(mappedBy = "category" , cascade = CascadeType.ALL)
+	private List<Product> products;
+	
+	private Integer level;
+	
+	
+
 }
