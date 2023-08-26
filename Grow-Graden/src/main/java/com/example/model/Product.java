@@ -71,7 +71,7 @@ public class Product {
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private List<Rating> ratings;
-
+  
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;

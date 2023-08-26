@@ -8,6 +8,10 @@ import java.util.Set;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
@@ -61,11 +65,7 @@ public class User {
 	private String mobileNumber;
 
 	private String role;
-
-	@Embedded
-	@ElementCollection
-	private Set<Address> addresses;
-
+	
 	@CreationTimestamp
 	@Column(updatable = false)
 	private LocalDateTime createdAt;
@@ -73,6 +73,10 @@ public class User {
 	@UpdateTimestamp
 	@Column(insertable = false)
 	private LocalDateTime lastModifiedDate;
+
+	@Embedded
+	@ElementCollection
+	private Set<Address> addresses;
 	
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private List<Product> productList;
@@ -91,6 +95,19 @@ public class User {
 	@OneToMany(mappedBy= "user", cascade = CascadeType.ALL)
 	private List<Review> review;
 	
-	@OneToMany(mappedBy= "user", cascade = CascadeType.ALL)
+//	@OneToMany(mappedBy= "user", cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Planter> planter;
+	
+	
+	/**
+	 * {
+			"firstName" : "Abcd",
+			"lastName" : "hb",
+			"email" : "p@p.com",
+			"password" : "12345",
+			"mobileNumber" : "9909999999",
+			"role" : "Customer"
+		}
+	 */
 }
