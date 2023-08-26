@@ -1,6 +1,7 @@
 package com.example.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -8,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.Min;
@@ -24,8 +26,7 @@ import lombok.NoArgsConstructor;
 public class Orders {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer bookingOrderId;
-
+	private Integer id;
 	@FutureOrPresent(message = "Order date must be Futuer or present")
 	private LocalDate orderDate;
 
@@ -43,8 +44,12 @@ public class Orders {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	@ManyToOne
-	@JoinColumn(name = "order_id")
-	private Product products;
+	@ManyToMany(mappedBy = "orders" , cascade = CascadeType.ALL)
+	private List<Product> products;
+	
+	@ManyToMany(mappedBy = "orders", cascade = CascadeType.ALL)
+	private List<Planter> planters;
+	
+	
 
 }

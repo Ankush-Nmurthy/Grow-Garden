@@ -17,8 +17,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -63,7 +66,8 @@ public class Product {
 	@NotBlank(message = "provide the difficulty level of growing.")
 	private String difficultyLevel;
 
-	@OneToMany(mappedBy = "products", cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "order_product_table" , joinColumns =  {@JoinColumn(name = "product_id")} , inverseJoinColumns = {@JoinColumn(name = "order_id")})
 	private List<Orders> orders;
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
