@@ -18,7 +18,7 @@ import com.example.repository.UserRepository;
 import com.example.request.LoginRequest;
 import com.example.responce.AuthResponse;
 
-@Service
+@Service	
 public class UserServiceImpl implements UserService {
 
 	private UserRepository userRepository;
@@ -79,7 +79,28 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findUserProfileByJwt(String jwt) throws UserException {
 		// TODO Auto-generated method stub
-		return null;
+	    try {
+	        // Parse the JWT to extract user information
+	        Claims claims = Jwts.parser()
+	                .setSigningKey("yourSecretKey")  // Replace with your actual secret key
+	                .parseClaimsJws(jwt)
+	                .getBody();
+
+	        // Extract user information from claims
+	        String username = claims.getSubject();
+	        // You can also extract other user-related data if present in the JWT claims
+
+	        // Query the database or your user repository to fetch the user profile based on the extracted information
+	        Optional<User> optional = userRepository.findByEmail(username);
+	        
+	        User userProfile =  optional.orElseThrow(()-> new UserException("User profile not found."));
+
+	        
+
+	        return userProfile;
+	    } catch (JwtException | IllegalArgumentException e) {
+	        throw new UserException("Invalid JWT or user profile not found." + e);
+	    }
 	}
 
 	private Authentication authenticate(String username, String password) {

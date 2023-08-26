@@ -1,7 +1,13 @@
 package com.example.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
@@ -32,7 +38,7 @@ public class Product {
 	private Integer productId;
 
 	@NotBlank(message = "provide Common name of the plant.")
-	private String commonName;
+	private String name;
 
 	@NotBlank(message = "provide the temperature which is required to grow this flower.")
 	private String temperature;
@@ -48,26 +54,38 @@ public class Product {
 	@NotNull(message = "plant cost cannot be null.")
 	private Double cost;
 
+	private Integer discountedPrice;
+
+	private Integer discountPercent;
+	
+	private Integer quantity;
+
 	@NotBlank(message = "provide the difficulty level of growing.")
 	private String difficultyLevel;
 
-	//product should not have the relation b/w orders but it requires to have relation only with rating and review.
-//	@OneToMany(mappedBy = "products",cascade = CascadeType.ALL)
-//	private List<Orders> orders;
+	@OneToMany(mappedBy = "products", cascade = CascadeType.ALL)
+	private List<Orders> orders;
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private List<Review> reviews;
-	
+
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private List<Rating> ratings;
-	
-	
-	//only user needs product information but product in return does not need user information
-	//One TO many byDirectional relation is not needed here.
+  
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private Category category;
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-	
-	//no need to have a bi-direction relation because any way user will be having the information of the 
-		//products he had ordered.
+
+	@CreationTimestamp
+	@Column(updatable = false)
+	private LocalDateTime createdAt;
+
+	@UpdateTimestamp
+	@Column(insertable = false)
+	private LocalDateTime lastModifiedDate;
+
 }
