@@ -1,6 +1,6 @@
 package com.example.exception;
 
-public class SeedNotFoundException extends Exception{
+public class SeedNotFoundException extends RuntimeException{
 
 	public SeedNotFoundException() {
 		// TODO Auto-generated constructor stub

@@ -7,19 +7,16 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.example.config.JwtProvider;
 import com.example.exception.UserException;
+import com.example.model.Address;
 import com.example.model.User;
 import com.example.repository.UserRepository;
 import com.example.request.LoginRequest;
 import com.example.responce.AuthResponse;
-
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.Jwts;
 
 @Service	
 public class UserServiceImpl implements UserService {
@@ -44,14 +41,15 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 
 		Optional<User> optional = userRepository.findByEmail(user.getEmail());
-		
-		if(optional.isPresent()) throw  new UserException("Email is already used try with another email");
-	
+
+		if (optional.isPresent())
+			throw new UserException("Email is already used try with another email");
+
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-	
+
 		userRepository.save(user);
 
-		Authentication authentication = new UsernamePasswordAuthenticationToken(user.getEmail(),user.getPassword());
+		Authentication authentication = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		String token = jwtProvider.genrateTokan(authentication);
@@ -104,7 +102,7 @@ public class UserServiceImpl implements UserService {
 	        throw new UserException("Invalid JWT or user profile not found." + e);
 	    }
 	}
-	
+
 	private Authentication authenticate(String username, String password) {
 		// TODO Auto-generated method stub
 		UserDetails userDetails = customeUserServiceImpl.loadUserByUsername(username);
@@ -114,5 +112,17 @@ public class UserServiceImpl implements UserService {
 			throw new BadCredentialsException("Invalid Password");
 		return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 	}
+
+	
+	// user adding multiple address to his account;
+	@Override
+	public String addAddressToUserAccount(Integer userId, Address address) {
+		User user = userRepository.findById(userId).orElseThrow(
+				() -> new UsernameNotFoundException("User Not found for the given userid : " + userId));
+		user.getAddresses().add(address);
+		userRepository.save(user);
+		return "User Address updated successfully.";
+	}
+
 
 }

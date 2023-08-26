@@ -1,7 +1,6 @@
 package com.example.exception;
 
 import java.time.LocalDateTime;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

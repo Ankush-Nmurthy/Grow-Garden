@@ -1,17 +1,16 @@
 package com.example.model;
 
-import java.util.List;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -39,8 +38,11 @@ public class Planter {
 	@Min(1)
 	private Integer drinageHoles;
 	
-	@NotNull(message = "provide a colur to planter")
-	private Integer planterColour;
+	@NotNull(message = "provide a colour to planter")
+	private String planterColour;
+	
+	@NotBlank(message = "please provide a image url of the given planter.")
+	private String planterImageUrl;
 	
 	@NotBlank(message = "provide a valid shape to planter")
 	private String planterShape;
@@ -51,6 +53,7 @@ public class Planter {
 	@NotNull(message = "provide a valid cost for the planter other than null.")
 	private Double planterCost;
 	
+
 	@ManyToOne
 	@JoinColumn(name = "user_Id")
 	private User user;
@@ -68,4 +71,23 @@ public class Planter {
 	
 	
 	
+
+	
+//	@ManyToOne
+//	@JoinColumn(name = "user_Id")
+//	@JsonProperty(access = Access.WRITE_ONLY)
+//	private User user;
+	
+	/**
+	 * {
+	       "planterHeight" : 15,
+		   "planterCapacity" : 20,
+		   "drinageHoles" : 30,	
+		   "planterColour" : "Green",
+		   "planterShape" : "Round",
+		   "planterStock" : 50,
+		   "planterCost" : 300.00
+	   }
+	 */
+
 }

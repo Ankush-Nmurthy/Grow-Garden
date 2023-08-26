@@ -11,9 +11,6 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-
-	
-	
 	  
 	  @ExceptionHandler(LoginException.class)
 		public ResponseEntity<ErrorDetails> loginExceptionHandler(LoginException se, WebRequest req){
@@ -98,5 +95,12 @@ public class GlobalExceptionHandler {
 		   return new ResponseEntity<>(md,HttpStatus.BAD_REQUEST);
 	   }
 
+	   @ExceptionHandler(PlanterNotFoundException.class)
+	   public ResponseEntity<ErrorDetails> planterException(PlanterNotFoundException ex,WebRequest wr){
+		   ErrorDetails ed = new ErrorDetails();
+		   ed.setMessage(ex.getMessage());
+		   ed.setDetails(wr.getDescription(false));
+		   return new ResponseEntity<ErrorDetails>(ed,HttpStatus.BAD_REQUEST);
+	   }
 		
 }
