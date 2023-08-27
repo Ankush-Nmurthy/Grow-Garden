@@ -14,7 +14,7 @@ import java.util.Optional;
 @RestController
 public class RatingController {
 
-	private final RatingService ratingService;
+	private RatingService ratingService;
 
 	@Autowired
 	public RatingController(RatingService ratingService) {

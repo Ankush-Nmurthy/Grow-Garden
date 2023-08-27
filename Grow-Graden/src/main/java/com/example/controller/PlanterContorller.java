@@ -33,17 +33,6 @@ public class PlanterContorller {
 		return new ResponseEntity<Planter>(planterServiceInterface.addPlanter(userId, planterId), HttpStatus.CREATED);
 	}
 	
-	//admin should add the product..==========================================
-	@PostMapping("/planters")
-	public ResponseEntity<Planter> addPlanter(@Valid @RequestBody Planter planter) {
-		return new ResponseEntity<Planter>(planterServiceInterface.addPlanter(planter), HttpStatus.CREATED);
-	}
-
-	@PutMapping("/planters")
-	public ResponseEntity<Planter> updatePlanter(@RequestBody PlanterDto planter) {
-		return new ResponseEntity<Planter>(planterServiceInterface.updatePlanter(planter), HttpStatus.CREATED);
-	}
-	///-----=========================================-========================
 
 	@DeleteMapping("/planters/{planterId}")
 	public ResponseEntity<String> deletePlaterById(@PathVariable Integer planterId) {

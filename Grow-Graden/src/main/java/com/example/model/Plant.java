@@ -22,7 +22,6 @@ public class Plant extends Product{
 	@NotBlank(message = "provide the plants spread value.")
 	private String plantSpread;
 
-
 	@NotBlank(message = "provide the type of plant.")
 	private String typeOfPlant;
 	
