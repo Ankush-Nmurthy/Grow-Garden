@@ -59,5 +59,12 @@ public class RatingController {
 		return new ResponseEntity<List<Rating>>(ratings, HttpStatus.OK);
     	
 	}
+	
+	 @DeleteMapping("/ratings/{id}")
+	    public ResponseEntity<String> deleteRating(@PathVariable Integer id) {
+	            
+	            return new ResponseEntity<String>(ratingService.deleteRating(id),HttpStatus.NO_CONTENT);
+	       
+	    }
 
 }

@@ -1,6 +1,7 @@
 package com.example.service;
 
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import com.example.config.JwtProvider;
 import com.example.exception.UserException;
 import com.example.model.Address;
@@ -17,6 +19,10 @@ import com.example.model.User;
 import com.example.repository.UserRepository;
 import com.example.request.LoginRequest;
 import com.example.responce.AuthResponse;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
 
 @Service	
 public class UserServiceImpl implements UserService {

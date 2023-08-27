@@ -10,4 +10,5 @@ public interface RatingService {
     Optional<Rating> getRatingById(Integer id);
     List<Rating> getRatingsByProductId(Integer productId);
     List<Rating> getRatingsByUserId(Integer userId);
+    String deleteRating(Integer id);
 }
