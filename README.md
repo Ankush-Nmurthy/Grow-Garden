@@ -30,31 +30,31 @@ The Online Plant Nursery Application is a web-based platform designed to facilit
 ### For Admin:
 
 1. **Plants Management:**
-    a. Add new plant products with details (name, description, price, image, etc.).
-    b. Update or delete existing plant products.
-    c. Manage plant categories and attributes.
+    - Add new plant products with details (name, description, price, image, etc.).
+    - Update or delete existing plant products.
+    - Manage plant categories and attributes.
 
 2. **Seeds Management:**
-    a. Add new seed products with details.
-    b. Edit or remove existing seed products.
-    c. Organize seeds by categories and attributes.
+    - Add new seed products with details.
+    - Edit or remove existing seed products.
+    - Organize seeds by categories and attributes.
 
 3. **Planters Management:**
-    a. Add new planter products with relevant information.
-    b. Modify or delete existing planter products.
-    c. Categorize planters based on type, size, material, etc.
+    - Add new planter products with relevant information.
+    - Modify or delete existing planter products.
+    - Categorize planters based on type, size, material, etc.
 
 4. **Customer Management:**
-    a. View and manage customer accounts.
-    b. Monitor customer orders and order history.
-    c. Handle customer inquiries and support.
+    - View and manage customer accounts.
+    - Monitor customer orders and order history.
+    - Handle customer inquiries and support.
 
 
 ## Tech-Stacks:
-  - Frontend: HTML, CSS, JavaScript.
-  - Backend: Java, Spring-Boot, Spring-Data-JPA
-  - Database: MYSQL.
-  - User Authentication: JWT (JSON Web Tokens)
+    - Frontend: HTML, CSS, JavaScript.
+    - Backend: Java, Spring-Boot, Spring-Data-JPA
+    - Database: MYSQL.
+    - User Authentication: JWT (JSON Web Tokens)
 
 ## Database
 
