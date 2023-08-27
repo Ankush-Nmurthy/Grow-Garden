@@ -100,7 +100,8 @@ To run the application, follow these steps:
 ## Future implementation:
 1. We can also implement Payment Gateway for this application.
 
-**Conclusion:**
+
+##Conclusion:
 
 The Online Plant Nursery Application brings together plant enthusiasts and sellers, offering a convenient and seamless platform to buy and sell plants, seeds, and planters. With user-friendly interfaces for customers and administrators, the application simplifies product management, order processing, and customer interactions, creating a flourishing online community for gardening enthusiasts.
     
