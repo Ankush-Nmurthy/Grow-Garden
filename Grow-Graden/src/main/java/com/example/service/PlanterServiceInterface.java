@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.dto.PlanterDto;
+import com.example.model.Cart;
 import com.example.model.Planter;
 
 public interface PlanterServiceInterface {
@@ -15,7 +16,7 @@ public interface PlanterServiceInterface {
 	 * @param planter
 	 * @return Planter
 	 */
-	Planter addPlanter(Integer userId, Integer planterId);
+	Cart addPlanter(Integer userId, Integer planterId, Integer quantity);
 	
 	
 	/**

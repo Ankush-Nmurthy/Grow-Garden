@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import com.example.model.Review;
 import com.example.repository.ReviewRepository;
 
-
-
 @Service
 public class ReviewServiceImpl implements ReviewService {
 
@@ -37,10 +35,11 @@ public class ReviewServiceImpl implements ReviewService {
     }
     
   
-
     @Override
     public List<Review> getReviewsByProductId(Integer productId) {
+
         return reviewRepository.findByProductProductId(productId);
+
     }
 
     @Override

@@ -3,6 +3,9 @@ package com.example.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -45,14 +48,10 @@ public class Orders {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-
-	@ManyToMany(mappedBy = "orders" , cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "orders", cascade = CascadeType.ALL)
 	private List<Product> products;
-	
+
 	@ManyToMany(mappedBy = "orders", cascade = CascadeType.ALL)
 	private List<Planter> planters;
-	
-	
-
 
 }

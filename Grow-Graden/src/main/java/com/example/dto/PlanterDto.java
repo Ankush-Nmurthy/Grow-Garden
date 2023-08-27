@@ -17,4 +17,18 @@ public class PlanterDto {
 	private Integer planterStock;
 	private Double planterCost;
 	private String planterImageUrl;
+	
+	/**
+	 * {
+	        "planterId": 7,
+	        "planterHeight": 70.0,
+	        "planterCapacity": 800,
+	        "drinageHoles": 80,
+	        "planterColour": "alue",
+	        "planterImageUrl": "ajsdlf'jlasdfjlsfjlsdfja;slfdjlf",
+	        "planterShape": "lquare",
+	        "planterStock": 110,
+	        "planterCost": 2000.0
+    	}
+	 */
 }
