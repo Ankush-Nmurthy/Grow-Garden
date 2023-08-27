@@ -42,18 +42,7 @@ public class PlanterContorller {
 		return new ResponseEntity<Cart>(planterServiceInterface.addPlanter(userId, planterId,quantity), HttpStatus.CREATED);
 	}
 	
-	
-	//this method should be accessible only by admin==========================================
-	@PostMapping("/planters")
-	public ResponseEntity<Planter> addPlanter(@Valid @RequestBody Planter planter) {
-		return new ResponseEntity<Planter>(planterServiceInterface.addPlanter(planter), HttpStatus.CREATED);
-	}
 
-	@PutMapping("/planters")
-	public ResponseEntity<Planter> updatePlanter(@RequestBody PlanterDto planter) {
-		return new ResponseEntity<Planter>(planterServiceInterface.updatePlanter(planter), HttpStatus.CREATED);
-	}
-	///-----=========================================-========================
 
 	@DeleteMapping("/planters/{planterId}")
 	public ResponseEntity<String> deletePlaterById(@PathVariable Integer planterId) {

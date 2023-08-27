@@ -19,7 +19,7 @@ import com.example.service.ReviewService;
 @RestController
 public class ReviewController {
 
-    private final ReviewService reviewService;
+    private  ReviewService reviewService;
 
     @Autowired
     public ReviewController(ReviewService reviewService) {
