@@ -65,7 +65,7 @@ The Online Plant Nursery Application is a web-based platform designed to facilit
 
 This project is a collaborative effort of the following team members:
 
-- RutWik
+- Rutwik
 - Ankush.N
 - Chandan
 - Harsh Rai
