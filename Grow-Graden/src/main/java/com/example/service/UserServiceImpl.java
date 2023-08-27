@@ -1,6 +1,7 @@
 package com.example.service;
 
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import com.example.config.JwtProvider;
 import com.example.exception.UserException;
 import com.example.model.Address;
@@ -18,7 +20,11 @@ import com.example.repository.UserRepository;
 import com.example.request.LoginRequest;
 import com.example.responce.AuthResponse;
 
-@Service	
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
+
+@Service
 public class UserServiceImpl implements UserService {
 
 	private UserRepository userRepository;
@@ -79,28 +85,25 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findUserProfileByJwt(String jwt) throws UserException {
 		// TODO Auto-generated method stub
-	    try {
-	        // Parse the JWT to extract user information
-	        Claims claims = Jwts.parser()
-	                .setSigningKey("yourSecretKey")  // Replace with your actual secret key
-	                .parseClaimsJws(jwt)
-	                .getBody();
+		try {
+			// Parse the JWT to extract user information
+			Claims claims = Jwts.parser().setSigningKey("yourSecretKey") // Replace with your actual secret key
+					.parseClaimsJws(jwt).getBody();
 
-	        // Extract user information from claims
-	        String username = claims.getSubject();
-	        // You can also extract other user-related data if present in the JWT claims
+			// Extract user information from claims
+			String username = claims.getSubject();
+			// You can also extract other user-related data if present in the JWT claims
 
-	        // Query the database or your user repository to fetch the user profile based on the extracted information
-	        Optional<User> optional = userRepository.findByEmail(username);
-	        
-	        User userProfile =  optional.orElseThrow(()-> new UserException("User profile not found."));
+			// Query the database or your user repository to fetch the user profile based on
+			// the extracted information
+			Optional<User> optional = userRepository.findByEmail(username);
 
-	        
+			User userProfile = optional.orElseThrow(() -> new UserException("User profile not found."));
 
-	        return userProfile;
-	    } catch (JwtException | IllegalArgumentException e) {
-	        throw new UserException("Invalid JWT or user profile not found." + e);
-	    }
+			return userProfile;
+		} catch (JwtException | IllegalArgumentException e) {
+			throw new UserException("Invalid JWT or user profile not found." + e);
+		}
 	}
 
 	private Authentication authenticate(String username, String password) {
@@ -113,16 +116,14 @@ public class UserServiceImpl implements UserService {
 		return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 	}
 
-	
 	// user adding multiple address to his account;
 	@Override
 	public String addAddressToUserAccount(Integer userId, Address address) {
-		User user = userRepository.findById(userId).orElseThrow(
-				() -> new UsernameNotFoundException("User Not found for the given userid : " + userId));
+		User user = userRepository.findById(userId)
+				.orElseThrow(() -> new UsernameNotFoundException("User Not found for the given userid : " + userId));
 		user.getAddresses().add(address);
 		userRepository.save(user);
 		return "User Address updated successfully.";
 	}
-
 
 }

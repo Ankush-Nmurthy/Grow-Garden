@@ -18,11 +18,14 @@ import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -76,6 +79,7 @@ public class User {
 
 	@Embedded
 	@ElementCollection
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Set<Address> addresses;
 	
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
@@ -99,6 +103,9 @@ public class User {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Planter> planter;
 	
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	private Cart cart;
 	
 	/**
 	 * {

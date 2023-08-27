@@ -14,7 +14,7 @@ public interface RatingRepository extends JpaRepository<Rating, Integer> {
     * @param productId
     * @return Rating of the product according to productId 
     */
-	List<Rating> findByProductId(Integer productId);
+	List<Rating> findByProductProductId(Integer productId);
 	
 	/**
 	    * 

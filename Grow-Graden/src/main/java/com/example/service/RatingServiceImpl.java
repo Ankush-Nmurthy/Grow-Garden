@@ -34,7 +34,7 @@ public class RatingServiceImpl implements RatingService {
 
     @Override
     public List<Rating> getRatingsByProductId(Integer productId) {
-        return ratingRepository.findByProductId(productId);
+        return ratingRepository.findByProductProductId(productId);
     }
 
     @Override
