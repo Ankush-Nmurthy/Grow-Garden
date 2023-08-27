@@ -11,21 +11,21 @@ import com.example.model.Planter;
 import com.example.model.User;
 import com.example.repository.CartRepository;
 import com.example.repository.OrdersRepository;
-import com.example.repository.PlanterRepositoryInterface;
+import com.example.repository.PlanterRepository;
 import com.example.repository.UserRepository;
 
 public class OrderServiceImplClass implements OrderServiceInteface {
 
 	private UserRepository userRepository;
 
-	private PlanterRepositoryInterface planterRepositoryInterface;
+	private PlanterRepository planterRepositoryInterface;
 
 	private OrdersRepository ordersRepository;
 
 	private CartRepository cartRepository;
 
 	@Autowired
-	public OrderServiceImplClass(PlanterRepositoryInterface planterRepositoryInterface,
+	public OrderServiceImplClass(PlanterRepository planterRepositoryInterface,
 			OrdersRepository ordersRepository, UserRepository userRepository, CartRepository cartRepository) {
 		this.planterRepositoryInterface = planterRepositoryInterface;
 		this.ordersRepository = ordersRepository;

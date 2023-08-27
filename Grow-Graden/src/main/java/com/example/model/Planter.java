@@ -2,6 +2,8 @@ package com.example.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -66,9 +68,6 @@ public class Planter {
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private List<Orders> orders;
 
-	@ManyToOne
-	@JoinColumn(name = "cart_id")
-	private Cart cart;
 //	@ManyToOne
 //	@JoinColumn(name = "user_Id")
 //	@JsonProperty(access = Access.WRITE_ONLY)

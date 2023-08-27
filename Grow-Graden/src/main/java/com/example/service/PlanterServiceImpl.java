@@ -4,85 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.example.dto.PlanterDto;
-import com.example.exception.CartException;
 import com.example.exception.PlantNotFoundException;
 import com.example.exception.PlanterNotFoundException;
 import com.example.model.Cart;
 import com.example.model.Planter;
-import com.example.model.User;
 import com.example.repository.CartRepository;
-import com.example.repository.PlanterRepositoryInterface;
+import com.example.repository.PlanterRepository;
 import com.example.repository.UserRepository;
 
 @Service
-public class PlanterServiceImplClass implements PlanterServiceInterface {
+public class PlanterServiceImpl implements PlanterService {
 
-	private PlanterRepositoryInterface planterRepositoryInterface;
+	private PlanterRepository planterRepositoryInterface;
 
 	private UserRepository userRepository;
 
 	private CartRepository cartRepository;
 
 	@Autowired
-	public PlanterServiceImplClass(PlanterRepositoryInterface planterRepositoryInterface, UserRepository userRepository,
+	public PlanterServiceImpl(PlanterRepository planterRepositoryInterface, UserRepository userRepository,
 			CartRepository cartRepository) {
 		this.planterRepositoryInterface = planterRepositoryInterface;
 		this.userRepository = userRepository;
 		this.cartRepository = cartRepository;
-	}
-
-	// this Adds the planter to a user.
-	// I have changed the Users List<Planter> property to only write because
-	// was causing Infinite calls form user side .
-	@Override
-	public Cart addPlanter(Integer userId, Integer planterId, Integer quantity) {
-		User user = userRepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException("No User found for the given userId : "+userId));
-		Planter planter = planterRepositoryInterface.findById(planterId).orElseThrow(() -> new PlanterNotFoundException("Planter not found for the given planter Id : "+planterId));
-		Cart cart = null;
-		if(user.getCart() == null) {
-			cart = new Cart();
-			user.setCart(cart);
-			cart.getPlanters().add(planter);
-		}
-		else {
-			cart = cartRepository.findById(user.getCart().getCartId()).get();
-			cart.getPlanters().add(planter);
-		}
-		// fetching the price of existing cart inside the user and if 
-		// the value is null setting the value to 0;
-		double cartPrice;
-		if(cart.getTotalPrice() == null) { 
-			cartPrice = 0;
-		}
-		else {
-			cartPrice = cart.getTotalPrice();
-		}
-		
-		// adding the total amount for the quantity for the user cart. 
-		for(Planter plant : cart.getPlanters()) {
-			double price = plant.getPlanterCost()*quantity;
-			cartPrice += price;
-		}
-		
-		planter.setPlanterStock(planter.getPlanterStock() - quantity);
-		cart.setTotalPrice(cartPrice);
-		cart.setUserid(user.getId());// setting the user to cart and cart to user.
-		user.setCart(cart);
-		planter.setCart(cart);
-		cartRepository.save(cart);
-		userRepository.save(user);
-		planterRepositoryInterface.save(planter);
-		return cart;
 	}
 
 	@Override
