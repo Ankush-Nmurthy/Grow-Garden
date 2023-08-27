@@ -91,8 +91,5 @@ public class Product {
 	@Column(insertable = false)
 	private LocalDateTime lastModifiedDate;
 	
-	@ManyToOne
-	@JoinColumn(name = "cart_id")
-	private Cart cart;
-
+	
 }

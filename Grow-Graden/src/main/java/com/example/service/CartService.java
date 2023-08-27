@@ -1,0 +1,12 @@
+package com.example.service;
+
+import com.example.model.Cart;
+import com.example.request.CartRequest;
+
+public interface CartService {
+	
+	public Cart  addPlanterInCart(CartRequest cartRequest);
+	
+	
+	
+}

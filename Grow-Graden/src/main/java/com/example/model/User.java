@@ -103,8 +103,7 @@ public class User {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Planter> planter;
 	
-	@OneToOne
-	@JoinColumn(name = "user_id")
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 	private Cart cart;
 	
 	/**

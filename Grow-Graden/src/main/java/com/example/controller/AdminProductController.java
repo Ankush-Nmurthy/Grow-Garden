@@ -20,7 +20,7 @@ import com.example.model.Planter;
 import com.example.model.Product;
 import com.example.model.Seed;
 import com.example.responce.ApiResponse;
-import com.example.service.PlanterServiceInterface;
+import com.example.service.PlanterService;
 import com.example.service.ProductService;
 import com.example.service.UserService;
 
@@ -32,12 +32,12 @@ public class AdminProductController {
 
 	private ProductService productService;
 	private UserService userService;
-	private PlanterServiceInterface planterServiceInterface;
+	private PlanterService planterServiceInterface;
 
 	
 
 	public AdminProductController(ProductService productService, UserService userService,
-			PlanterServiceInterface planterServiceInterface) {
+			PlanterService planterServiceInterface) {
 		super();
 		this.productService = productService;
 		this.userService = userService;
@@ -79,7 +79,7 @@ public class AdminProductController {
 	}
 
 	// admin should add the product..==========================================
-	@PostMapping("/planters")
+	@PostMapping("/planter")
 	public ResponseEntity<Planter> addPlanter(@Valid @RequestBody Planter planter) {
 		return new ResponseEntity<Planter>(planterServiceInterface.addPlanter(planter), HttpStatus.CREATED);
 	}

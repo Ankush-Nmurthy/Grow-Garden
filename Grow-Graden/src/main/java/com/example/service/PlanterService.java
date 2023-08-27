@@ -7,16 +7,9 @@ import com.example.dto.PlanterDto;
 import com.example.model.Cart;
 import com.example.model.Planter;
 
-public interface PlanterServiceInterface {
+public interface PlanterService {
 
-	/**
-	 * This method add the Planter
-	 * 
-	 * @param userId
-	 * @param planter
-	 * @return Planter
-	 */
-	Cart addPlanter(Integer userId, Integer planterId, Integer quantity);
+	
 	
 	
 	/**

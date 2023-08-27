@@ -3,6 +3,8 @@ package com.example.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,14 +27,17 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer cartId;
 	
+	
+	List<Integer> productIds = new ArrayList<>();
+	
+	List<Integer> planterIds = new ArrayList<>();
+	
+	private Integer quantity;
+	
 	private Double totalPrice;
 	
-	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-	private List<Product> products = new ArrayList<>();
-	
-	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-	private List<Planter> planters = new ArrayList<>();
-	
-	private Integer userid;
+	@OneToOne()
+	@JsonIgnore
+	private User user;
 	
 }
