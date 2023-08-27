@@ -20,33 +20,29 @@ import com.example.service.PlanterService;
 @RestController
 public class PlanterContorller {
 
-	private PlanterService planterServiceInterface;
-
-	@Autowired
-	public PlanterContorller(PlanterService planterServiceInterface) {
-		this.planterServiceInterface = planterServiceInterface;
+	private PlanterService planterService;
+	
+	public PlanterContorller(PlanterService planterService) {
+		super();
+		this.planterService = planterService;
 	}
+
 
 //	@PostMapping("/planters/{userId}/{planterId}/{quantity}")
-//	public ResponseEntity<Planter> addPlanter(@PathVariable Integer userId, @PathVariable Integer planterId,@PathVariable Integer quantity) {
-//		return new ResponseEntity<Planter>(planterServiceInterface.addPlanter(userId, planterId,quantity), HttpStatus.CREATED);
+//	public ResponseEntity<Cart> addPlanter(@PathVariable Integer userId, @PathVariable Integer planterId,@PathVariable Integer quantity) {
+//		return new ResponseEntity<Cart>(PlanterService.addPlanter(userId, planterId,quantity), HttpStatus.CREATED);
 //	}
-	
-	@PostMapping("/planters/{userId}/{planterId}/{quantity}")
-	public ResponseEntity<Cart> addPlanter(@PathVariable Integer userId, @PathVariable Integer planterId,@PathVariable Integer quantity) {
-		return new ResponseEntity<Cart>(planterServiceInterface.addPlanter(userId, planterId,quantity), HttpStatus.CREATED);
-	}
-	
+//	
 
 
 	@DeleteMapping("/planters/{planterId}")
 	public ResponseEntity<String> deletePlaterById(@PathVariable Integer planterId) {
-		return new ResponseEntity<String>(planterServiceInterface.deletePlanter(planterId), HttpStatus.OK);
+		return new ResponseEntity<String>(planterService.deletePlanter(planterId), HttpStatus.OK);
 	}
 
 	@GetMapping("/planters/{planterId}")
 	public ResponseEntity<Planter> viewPlanterById(@PathVariable Integer planterId) {
-		return new ResponseEntity<Planter>(planterServiceInterface.viewPlanterById(planterId), HttpStatus.ACCEPTED);
+		return new ResponseEntity<Planter>(planterService.viewPlanterById(planterId), HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping("/planters")
@@ -54,17 +50,17 @@ public class PlanterContorller {
 			@RequestParam(defaultValue = "0", required = false) Integer page,
 			@RequestParam(defaultValue = "10", required = false) Integer size,
 			@RequestParam(required = false) Map<String,String> map) {
-		return new ResponseEntity<List<Planter>>(planterServiceInterface.viewAllPlanter(page,size,map), HttpStatus.ACCEPTED);
+		return new ResponseEntity<List<Planter>>(planterService.viewAllPlanter(page,size,map), HttpStatus.ACCEPTED);
 	}
 	
 	@GetMapping("/plantersBy/{shape}")
 	public ResponseEntity<List<Planter>> ViewPlanterByPlanterShape(@PathVariable String shape){
-		return new ResponseEntity<List<Planter>>(planterServiceInterface.ViewPlanterByPlanterShape(shape),HttpStatus.ACCEPTED);
+		return new ResponseEntity<List<Planter>>(planterService.ViewPlanterByPlanterShape(shape),HttpStatus.ACCEPTED);
 	}
 	
 	@GetMapping("/planters/{min}/{max}")
 	public ResponseEntity<List<Planter>> viewAllPlantersbetweenRange(@PathVariable Double min,@PathVariable Double max){
-		return new ResponseEntity<List<Planter>>(planterServiceInterface.viewAllPlantersbetweenRange(min, max),HttpStatus.ACCEPTED);
+		return new ResponseEntity<List<Planter>>(planterService.viewAllPlantersbetweenRange(min, max),HttpStatus.ACCEPTED);
 	}
 	
 }

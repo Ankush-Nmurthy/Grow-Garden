@@ -55,7 +55,7 @@ public class CartServcieImpl implements CartService {
 		cart.setQuantity(cartRequest.getQuantity());
 		cart.setTotalPrice(totalPrice);
 		cart.setUser(user);
-		
+
 		cartRepository.save(cart);
 
 		return cart;

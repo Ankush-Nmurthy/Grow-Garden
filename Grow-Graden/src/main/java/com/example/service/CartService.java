@@ -5,7 +5,7 @@ import com.example.request.CartRequest;
 
 public interface CartService {
 	
-	public Cart  addPlanterInCart(CartRequest cartRequest);
+	public Cart addPlanterInCart(CartRequest cartRequest);
 	
 	
 	
