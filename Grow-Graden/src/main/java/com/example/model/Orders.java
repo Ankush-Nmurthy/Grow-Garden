@@ -37,9 +37,9 @@ public class Orders {
 	@NotBlank(message = "please provide transaction type.")
 	private String transaction;
 
-	@NotNull(message = "quantity should be minimum - 1")
-	@Min(1)
-	private Integer quantity;
+//	@NotNull(message = "quantity should be minimum - 1")
+//	@Min(1)
+//	private Integer quantity;
 
 	@NotNull(message = "cost cannot be null.")
 	private Double totalCost;
@@ -54,4 +54,5 @@ public class Orders {
 	@ManyToMany(mappedBy = "orders", cascade = CascadeType.ALL)
 	private List<Planter> planters;
 
+	
 }

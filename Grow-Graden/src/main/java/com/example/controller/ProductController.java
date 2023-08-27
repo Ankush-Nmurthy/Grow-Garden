@@ -22,8 +22,8 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
-	
-	//baseurl/api/products?category=ssds& 
+
+	// baseurl/api/products?category=ssds&
 	@GetMapping("/products")
 	public ResponseEntity<Page<Product>> findProductByCategoryHandler(@RequestParam String category,
 			@RequestParam Integer minprice, @RequestParam Integer maxPrice, @RequestParam Integer minDiscount,
@@ -36,29 +36,39 @@ public class ProductController {
 		return new ResponseEntity<>(res, HttpStatus.ACCEPTED);
 
 	}
-	
-	@GetMapping("/plants")
-	public ResponseEntity<List<Product>> getAllPlant(){
-		List<Product> products = productService.getAllPlants();
-		return new ResponseEntity<List<Product>>(products,HttpStatus.OK);
-	}
-	
-	@GetMapping("/seeds")
-	public ResponseEntity<List<Product>> getAllSeed(){
-		List<Product> products = productService.getAllSeeds();
-		return new ResponseEntity<List<Product>>(products,HttpStatus.OK);
-	}
-	
-	@GetMapping("/products/id/{productId}")
-	public ResponseEntity<Product> findProductById(@PathVariable Long productId){
-		Product product = productService.findProductById(productId);
-		return new ResponseEntity<Product>(product,HttpStatus.ACCEPTED);
-		
-	}
-	
-	
-	
-	
 
+	@GetMapping("/plants")
+	public ResponseEntity<List<Product>> getAllPlant() {
+		List<Product> products = productService.getAllPlants();
+		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+	}
+
+	@GetMapping("/seeds")
+	public ResponseEntity<List<Product>> getAllSeed() {
+		List<Product> products = productService.getAllSeeds();
+		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+	}
+
+	@GetMapping("/products/id/{productId}")
+	public ResponseEntity<Product> findProductById(@PathVariable Long productId) {
+		Product product = productService.findProductById(productId);
+		return new ResponseEntity<Product>(product, HttpStatus.ACCEPTED);
+
+	}
+
+	@GetMapping("/products/{type}")
+	public List<Product> getPlants(@PathVariable String type,
+			@RequestParam(name = "sortField1", required = false) String sortField1,
+			@RequestParam(name = "sortDirection1", required = false) String sortDirection1,
+			@RequestParam(name = "sortField2", required = false) String sortField2,
+			@RequestParam(name = "sortDirection2", required = false) String sortDirection2,
+			@RequestParam(name = "sortField3", required = false) String sortField3,
+			@RequestParam(name = "sortDirection3", required = false) String sortDirection3,
+			@RequestParam(name = "pageNo", defaultValue = "1") int pageNo,
+			@RequestParam(name = "pageSize", defaultValue = "10") int pageSize) {
+
+		return productService.getPlantsWithSortingAndPagination(type, sortField1, sortDirection1, sortField2,
+				sortDirection2, sortField3, sortDirection3, pageNo, pageSize);
+	}
 
 }

@@ -129,4 +129,15 @@ public class ProductServiceImpl implements ProductService {
 		return products;
 	}
 
+	// ---------Ankuh- ------------;
+	// the above two method is works same in same way.
+	@Override
+	public List<Product> getPlantsWithSortingAndPagination(String producttype, String sortField1, String sortDirection1,
+			String sortField2, String sortDirection2, String sortField3, String sortDirection3, int pageNo,
+			int pageSize) {
+
+		int offset = (pageNo - 1) * pageSize;
+		return productRepository.findPlantsWithSortingAndPagination(producttype, sortField1, sortDirection1, sortField2,
+				sortDirection2, sortField3, sortDirection3, pageSize, offset);
+	}
 }

@@ -32,12 +32,10 @@ public class PlanterContorller {
 //		return new ResponseEntity<Planter>(planterServiceInterface.addPlanter(userId, planterId,quantity), HttpStatus.CREATED);
 //	}
 	
-	@PostMapping("/planters/{userId}/{planterId}/{quantity}")
-	public ResponseEntity<Cart> addPlanter(@PathVariable Integer userId, @PathVariable Integer planterId,@PathVariable Integer quantity) {
-		return new ResponseEntity<Cart>(planterServiceInterface.addPlanter(userId, planterId,quantity), HttpStatus.CREATED);
-	}
-	
-
+//	@PostMapping("/planters/{userId}/{planterId}/{quantity}")
+//	public ResponseEntity<Cart> addPlanter(@PathVariable Integer userId, @PathVariable Integer planterId,@PathVariable Integer quantity) {
+//		return new ResponseEntity<Cart>(planterServiceInterface.addPlanter(userId, planterId,quantity), HttpStatus.CREATED);
+//	}
 
 	@DeleteMapping("/planters/{planterId}")
 	public ResponseEntity<String> deletePlaterById(@PathVariable Integer planterId) {
