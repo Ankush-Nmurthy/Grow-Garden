@@ -11,7 +11,7 @@ The Online Plant Nursery Application is a web-based platform designed to facilit
 
 ## Key Features:
 
-### Admin Operations
+### For Customers:
 
 1. **Product Listing:** Customers can view a comprehensive list of available plants, seeds, and planters. Each product listing includes images, descriptions, prices, and other relevant details.
 
