@@ -2,6 +2,8 @@ package com.example.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,13 +19,10 @@ public class CartController {
 	
 	private CartService cartService;
 	
-	
-	
 	public CartController(CartService cartService) {
 		super();
 		this.cartService = cartService;
 	}
-
 
 	@PostMapping("/planter")
 	private ResponseEntity<Cart> addPlanterInCart(@RequestBody CartRequest cartRequest){
@@ -31,4 +30,14 @@ public class CartController {
 		return new ResponseEntity<Cart>(cart,HttpStatus.OK);
 	}
 
+	@PostMapping("/products")
+	private ResponseEntity<Cart> addProductInToCart(@RequestBody CartRequest cartRequest){
+		Cart cart = cartService.addproductIntoCart(cartRequest);
+		return new ResponseEntity<Cart>(cart,HttpStatus.OK);
+	}
+	
+	@GetMapping("/{userId}")
+	public ResponseEntity<Cart> viewUserCartUsingUserId(@PathVariable Integer userId){
+		return new ResponseEntity<Cart>(cartService.viewCart(userId),HttpStatus.OK);
+	}
 }

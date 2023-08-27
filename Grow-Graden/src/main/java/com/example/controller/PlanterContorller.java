@@ -32,7 +32,6 @@ public class PlanterContorller {
 //	public ResponseEntity<Cart> addPlanter(@PathVariable Integer userId, @PathVariable Integer planterId,@PathVariable Integer quantity) {
 //		return new ResponseEntity<Cart>(PlanterService.addPlanter(userId, planterId,quantity), HttpStatus.CREATED);
 //	}
-//	
 
 
 	@DeleteMapping("/planters/{planterId}")

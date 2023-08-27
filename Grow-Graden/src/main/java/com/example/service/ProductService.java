@@ -31,14 +31,19 @@ public interface ProductService {
 	public Product updateProduct(Long productId, Product requestProduct) throws ProductException;
 
 	public List<Product> findProductByCategory(String category);
-	
+
 	public List<Product> allProdcuts();
 
 	public Page<Product> getAllProducts(String category, Integer minPrice, Integer maxPrice, Integer minDiscount,
 			String sort, String stock, Integer pageNumber, Integer pageSize);
-	
-	public List<Product> getAllPlants()throws ProductException;
-	
+
+	public List<Product> getAllPlants() throws ProductException;
+
 	public List<Product> getAllSeeds() throws ProductException;
+
+	// ---------Ankuh- ------------;
+	public List<Product> getPlantsWithSortingAndPagination(String producttype, String sortField1, String sortDirection1,
+			String sortField2, String sortDirection2, String sortField3, String sortDirection3, int pageNo,
+			int pageSize);
 
 }

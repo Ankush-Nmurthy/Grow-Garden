@@ -10,6 +10,6 @@ public interface ReviewService {
     Optional<Review> getReviewById(Integer id);
     List<Review> getReviewsByProductId(Integer productId);
     List<Review> getReviewsByUserId(Integer userId);
-    
+    String deleteReview(Integer id);
 }
 

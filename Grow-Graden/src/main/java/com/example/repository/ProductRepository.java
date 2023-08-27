@@ -31,5 +31,16 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	
 	@Query(value = "SELECT * FROM product WHERE product_type = 'plant'" , nativeQuery = true)
 	public List<Product> getAllSeeds();
+	
+////---------Ankuh- ------------;
+	@Query(value = "SELECT * FROM product WHERE product_type = :producttype ORDER BY"
+			+ " CASE WHEN :sortField1 IS NULL THEN NULL ELSE" + "   CASE WHEN :sortField1 = 'field1' THEN field1 END"
+			+ " END :sortDirection1," + " CASE WHEN :sortField2 IS NULL THEN NULL ELSE"
+			+ "   CASE WHEN :sortField2 = 'field2' THEN field2 END" + " END :sortDirection2,"
+			+ " CASE WHEN :sortField3 IS NULL THEN NULL ELSE" + "   CASE WHEN :sortField3 = 'field3' THEN field3 END"
+			+ " END :sortDirection3" + " LIMIT :pageSize OFFSET :offset", nativeQuery = true)
+	List<Product> findPlantsWithSortingAndPagination(String producttype,String sortField1, String sortDirection1, String sortField2,
+			String sortDirection2, String sortField3, String sortDirection3, int pageSize, int offset);
+
 
 }
