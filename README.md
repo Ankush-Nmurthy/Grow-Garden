@@ -1,4 +1,4 @@
-# Online Trip Management System
+# Grow Garden
 
 ## Project Logo:
 ![image](https://github.com/developerrajthakur22/efficient-veil-6767/assets/121308092/28f5fe53-2248-441a-88e3-c843d58acdaf)
@@ -7,41 +7,54 @@
 
 ## Introduction
 
-The Online Trip Management System is a web application that aims to provide a convenient platform for managing tours and travels. The system allows both administrators and users to perform various operations related to tour packages, bus routes, hotel bookings, ticket bookings, and more.
+The Online Plant Nursery Application is a web-based platform designed to facilitate the purchase and management of a wide variety of plants, seeds, and planters. The application provides customers with an intuitive and user-friendly interface to browse through the available products, place orders, and manage their purchases. Additionally, the admin panel empowers administrators to efficiently manage products, customers, and overall operations.
 
-## Problem Statement
+## Key Features:
 
 ### Admin Operations
 
-1. **Login into the Application:** The admin can log in to the application with valid credentials to access the administrative features.
+1. **Product Listing:** Customers can view a comprehensive list of available plants, seeds, and planters. Each product listing includes images, descriptions, prices, and other relevant details.
 
-2. **User Management:** The admin can manage users, including creating, updating, and deleting user accounts.
+2. **Product Categories:** Products are categorized into plants, seeds, and planters, making it easy for customers to navigate and find what they are looking for.
 
-3. **Tours/Travels Package Management:** The admin can manage tour packages, such as adding new packages, updating existing ones, and removing packages.
+3. **Search and Filters:** Customers can use search functionality and filters to quickly locate specific products based on criteria like plant type, size, flowering season, etc.
 
-4. **Bus Management:** The admin can manage bus routes and buses, including adding new routes, updating bus details, and deleting routes.
+4. **Shopping Cart:** Customers can add multiple items to their shopping cart, review the cart, modify quantities, and proceed to checkout.
 
 5. **Ticket and Hotel Booking Management:** The admin can oversee ticket bookings and hotel reservations, ensuring smooth operations.
+   
+6. **Order Placement:** Customers can place orders for selected items, choose shipping options, and provide delivery details.
 
-### User Operations
+7. **User Accounts:** Customers can create accounts to save their preferences, view order history, and track the status of their current orders.
 
-1. **Login as Customer:** Users can log in with their credentials to access the customer features.
+### For Admin:
 
-2. **Select Routes/ book bus:** Users can view available bus routes to plan their trips.
+1. **Plants Management:**
+    a. Add new plant products with details (name, description, price, image, etc.).
+    b. Update or delete existing plant products.
+    c. Manage plant categories and attributes.
 
-3. **View Tours/Travels Packages:** Users can explore various tour packages offered by the system.
+2. **Seeds Management:**
+    a. Add new seed products with details.
+    b. Edit or remove existing seed products.
+    c. Organize seeds by categories and attributes.
 
-4. **Book / Print / Cancel Tickets:** Users can book tickets for their desired routes, print tickets for reference, and cancel bookings if needed.
+3. **Planters Management:**
+    a. Add new planter products with relevant information.
+    b. Modify or delete existing planter products.
+    c. Categorize planters based on type, size, material, etc.
 
-5. **Book Packages:** Users can book tour packages that suit their preferences and requirements.
+4. **Customer Management:**
+    a. View and manage customer accounts.
+    b. Monitor customer orders and order history.
+    c. Handle customer inquiries and support.
 
-## Project Overview
 
-The Online Trip Management System will be developed in several sprints using the following technologies:
-
-- **Sprint 1:** Core Java + JPA with Hibernate
-- **Sprint 2:** Spring Boot + Rest Controller + JPA with Hibernate
-- **Sprint 3:** Frontend Development (HTML, CSS, JavaScript)
+## Tech-Stacks:
+  - Frontend: HTML, CSS, JavaScript.
+  - Backend: Java, Spring-Boot, Spring-Data-JPA
+  - Database: MYSQL.
+  - User Authentication: JWT (JSON Web Tokens)
 
 ## Database
 
@@ -52,11 +65,10 @@ The Online Trip Management System will be developed in several sprints using the
 
 This project is a collaborative effort of the following team members:
 
-- Raj Thakur
-- Sonu Kumar
-- Harshal Musmade
-- Rutwik Kumbhar
-- Lalith Tonangi
+- RutWik
+- Ankush.N
+- Chandan
+- Harsh Rai
 
 ## Project Configuration
 
@@ -66,7 +78,7 @@ The project uses the following configuration for the Spring Boot application:
 server.port = 8888
 
 spring.datasource.driver=com.mysql.cj.jdbc.Driver
-spring.datasource.url=jdbc:mysql://localhost:3306/Touristo
+spring.datasource.url=jdbc:mysql://localhost:3306/growgarden
 spring.datasource.username= Your Username
 spring.datasource.password= Your Password
 
@@ -84,3 +96,11 @@ To run the application, follow these steps:
 3. Run the Spring Boot application.
 
 4. Access the application using the specified port (e.g., http://localhost:8888).
+
+## Future implementation:
+1. We can also implement Payment Gateway for this application.
+
+**Conclusion:**
+
+The Online Plant Nursery Application brings together plant enthusiasts and sellers, offering a convenient and seamless platform to buy and sell plants, seeds, and planters. With user-friendly interfaces for customers and administrators, the application simplifies product management, order processing, and customer interactions, creating a flourishing online community for gardening enthusiasts.
+    
