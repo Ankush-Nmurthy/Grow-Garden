@@ -24,7 +24,11 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 
-@Service	
+
+
+
+@Service
+
 public class UserServiceImpl implements UserService {
 
 	private UserRepository userRepository;
@@ -45,7 +49,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public AuthResponse createUser(User user) throws UserException {
 		// TODO Auto-generated method stub
-
+		
+		
 		Optional<User> optional = userRepository.findByEmail(user.getEmail());
 
 		if (optional.isPresent())
@@ -59,21 +64,53 @@ public class UserServiceImpl implements UserService {
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		String token = jwtProvider.genrateTokan(authentication);
+		
+	    AuthResponse authResponse = new AuthResponse();
+		 
+		 authResponse.getUser().put("firstName",user.getFirstName());
+		 authResponse.getUser().put("lastName", user.getLastName());
+		 authResponse.getUser().put("email", user.getEmail());
+		 authResponse.getUser().put("mobileNumber", user.getMobileNumber());
+		 
+		 
+		 authResponse.setJwt(token);
+		 authResponse.setMessage("Sign Up Success");
 
-		return new AuthResponse(token, "Signup Success");
+
+		 return authResponse;
 	}
 
 	@Override
 	public AuthResponse userLogin(LoginRequest loginRequest) {
 		// TODO Auto-generated method stub
+		
 
 		Authentication authentication = authenticate(loginRequest.getEmail(), loginRequest.getPassword());
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		String token = jwtProvider.genrateTokan(authentication);
+		
+		 Optional<User> optional =  userRepository.findByEmail(loginRequest.getEmail());
+		 
+		 
+		 
+		 User showUser =  optional.orElseThrow(()-> new UserException("User Not Resister"));
+		 AuthResponse authResponse = new AuthResponse();
+		 
+		 authResponse.getUser().put("firstName",showUser.getFirstName());
+		 authResponse.getUser().put("lastName", showUser.getLastName());
+		 authResponse.getUser().put("email", showUser.getEmail());
+		 authResponse.getUser().put("mobileNumber", showUser.getMobileNumber());
+		 authResponse.getUser().put("role", showUser.getRole());
+		 
+		 authResponse.setJwt(token);
+		 authResponse.setMessage("Sign In Success");
+		 
+		 
+		 System.out.println(showUser.getFirstName());
 
-		return new AuthResponse(token, "Signin Success");
+		return authResponse;
 	}
 
 	@Override
@@ -85,28 +122,25 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findUserProfileByJwt(String jwt) throws UserException {
 		// TODO Auto-generated method stub
-	    try {
-	        // Parse the JWT to extract user information
-	        Claims claims = Jwts.parser()
-	                .setSigningKey("yourSecretKey")  // Replace with your actual secret key
-	                .parseClaimsJws(jwt)
-	                .getBody();
+		try {
+			// Parse the JWT to extract user information
+			Claims claims = Jwts.parser().setSigningKey("yourSecretKey") // Replace with your actual secret key
+					.parseClaimsJws(jwt).getBody();
 
-	        // Extract user information from claims
-	        String username = claims.getSubject();
-	        // You can also extract other user-related data if present in the JWT claims
+			// Extract user information from claims
+			String username = claims.getSubject();
+			// You can also extract other user-related data if present in the JWT claims
 
-	        // Query the database or your user repository to fetch the user profile based on the extracted information
-	        Optional<User> optional = userRepository.findByEmail(username);
-	        
-	        User userProfile =  optional.orElseThrow(()-> new UserException("User profile not found."));
+			// Query the database or your user repository to fetch the user profile based on
+			// the extracted information
+			Optional<User> optional = userRepository.findByEmail(username);
 
-	        
+			User userProfile = optional.orElseThrow(() -> new UserException("User profile not found."));
 
-	        return userProfile;
-	    } catch (JwtException | IllegalArgumentException e) {
-	        throw new UserException("Invalid JWT or user profile not found." + e);
-	    }
+			return userProfile;
+		} catch (JwtException | IllegalArgumentException e) {
+			throw new UserException("Invalid JWT or user profile not found." + e);
+		}
 	}
 
 	private Authentication authenticate(String username, String password) {
@@ -115,20 +149,19 @@ public class UserServiceImpl implements UserService {
 		if (userDetails == null)
 			throw new BadCredentialsException("Invalid Username");
 		if (!passwordEncoder.matches(password, userDetails.getPassword()))
+
 			throw new BadCredentialsException("Invalid Password");
 		return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 	}
 
-	
 	// user adding multiple address to his account;
 	@Override
 	public String addAddressToUserAccount(Integer userId, Address address) {
-		User user = userRepository.findById(userId).orElseThrow(
-				() -> new UsernameNotFoundException("User Not found for the given userid : " + userId));
+		User user = userRepository.findById(userId)
+				.orElseThrow(() -> new UsernameNotFoundException("User Not found for the given userid : " + userId));
 		user.getAddresses().add(address);
 		userRepository.save(user);
 		return "User Address updated successfully.";
 	}
-
 
 }

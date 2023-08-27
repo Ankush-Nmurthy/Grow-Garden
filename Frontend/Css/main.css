@@ -1,0 +1,12 @@
+body{
+    padding: 0px;
+    border: 0px;
+}
+nav{
+    border: 1px solid black;
+    height: 100px;
+}
+#banner{
+    height: 600px;
+    width: 100%;
+}

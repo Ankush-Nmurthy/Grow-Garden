@@ -43,6 +43,7 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		Optional<Product> optional = productRepository.findById(id);
 		Product product = optional.orElseThrow(() -> new ProductException("Product not found with id" + id));
+		System.out.println(product);
 		return product;
 	}
 

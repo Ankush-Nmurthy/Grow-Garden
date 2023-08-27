@@ -21,7 +21,6 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -91,5 +90,9 @@ public class Product {
 	@UpdateTimestamp
 	@Column(insertable = false)
 	private LocalDateTime lastModifiedDate;
+	
+	@ManyToOne
+	@JoinColumn(name = "cart_id")
+	private Cart cart;
 
 }

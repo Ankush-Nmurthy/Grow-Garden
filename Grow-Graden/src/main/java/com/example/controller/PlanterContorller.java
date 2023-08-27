@@ -2,6 +2,7 @@ package com.example.controller;
 
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +14,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.example.dto.PlanterDto;
+import com.example.model.Cart;
 import com.example.model.Planter;
 import com.example.service.PlanterServiceInterface;
+
 import jakarta.validation.Valid;
 
 @RestController
@@ -28,22 +32,17 @@ public class PlanterContorller {
 		this.planterServiceInterface = planterServiceInterface;
 	}
 
-	@PostMapping("/planters/{userId}/{planterId}")
-	public ResponseEntity<Planter> addPlanter(@PathVariable Integer userId, @PathVariable Integer planterId) {
-		return new ResponseEntity<Planter>(planterServiceInterface.addPlanter(userId, planterId), HttpStatus.CREATED);
+//	@PostMapping("/planters/{userId}/{planterId}/{quantity}")
+//	public ResponseEntity<Planter> addPlanter(@PathVariable Integer userId, @PathVariable Integer planterId,@PathVariable Integer quantity) {
+//		return new ResponseEntity<Planter>(planterServiceInterface.addPlanter(userId, planterId,quantity), HttpStatus.CREATED);
+//	}
+	
+	@PostMapping("/planters/{userId}/{planterId}/{quantity}")
+	public ResponseEntity<Cart> addPlanter(@PathVariable Integer userId, @PathVariable Integer planterId,@PathVariable Integer quantity) {
+		return new ResponseEntity<Cart>(planterServiceInterface.addPlanter(userId, planterId,quantity), HttpStatus.CREATED);
 	}
 	
-	//admin should add the product..==========================================
-	@PostMapping("/planters")
-	public ResponseEntity<Planter> addPlanter(@Valid @RequestBody Planter planter) {
-		return new ResponseEntity<Planter>(planterServiceInterface.addPlanter(planter), HttpStatus.CREATED);
-	}
 
-	@PutMapping("/planters")
-	public ResponseEntity<Planter> updatePlanter(@RequestBody PlanterDto planter) {
-		return new ResponseEntity<Planter>(planterServiceInterface.updatePlanter(planter), HttpStatus.CREATED);
-	}
-	///-----=========================================-========================
 
 	@DeleteMapping("/planters/{planterId}")
 	public ResponseEntity<String> deletePlaterById(@PathVariable Integer planterId) {
