@@ -9,6 +9,7 @@ import com.example.exception.UserException;
 import com.example.model.Orders;
 import com.example.model.Planter;
 import com.example.model.User;
+import com.example.repository.CartRepository;
 import com.example.repository.OrdersRepository;
 import com.example.repository.PlanterRepositoryInterface;
 import com.example.repository.UserRepository;
@@ -21,12 +22,15 @@ public class OrderServiceImplClass implements OrderServiceInteface {
 
 	private OrdersRepository ordersRepository;
 
+	private CartRepository cartRepository;
+
 	@Autowired
 	public OrderServiceImplClass(PlanterRepositoryInterface planterRepositoryInterface,
-			OrdersRepository ordersRepository, UserRepository userRepository) {
+			OrdersRepository ordersRepository, UserRepository userRepository, CartRepository cartRepository) {
 		this.planterRepositoryInterface = planterRepositoryInterface;
 		this.ordersRepository = ordersRepository;
 		this.userRepository = userRepository;
+		this.cartRepository = cartRepository;
 	}
 
 	@Override

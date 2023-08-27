@@ -33,7 +33,5 @@ public class Category {
 	private List<Product> products;
 	
 	private Integer level;
-	
-	
 
 }
