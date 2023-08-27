@@ -3,6 +3,7 @@ package com.example.service;
 import com.example.model.Rating;
 import com.example.repository.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,6 +43,17 @@ public class RatingServiceImpl implements RatingService {
         return ratingRepository.findByUserId(userId);
     }
 
+    
+    @Override
+    public String deleteRating(Integer id) {
+        Optional<Rating> optional = ratingRepository.findById(id);
+        
+       Rating rating = optional.orElseThrow(()-> new UsernameNotFoundException("Review Not found"));
+       
+       ratingRepository.delete(rating);
+       
+       return "Rating with ID" +id+ "deleted successfully";
+    }
     
 }
 

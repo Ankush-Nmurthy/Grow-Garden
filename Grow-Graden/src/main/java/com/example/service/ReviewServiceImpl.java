@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.example.exception.GlobalExceptionHandler;
 import com.example.model.Review;
 import com.example.repository.ReviewRepository;
 
@@ -47,6 +49,17 @@ public class ReviewServiceImpl implements ReviewService {
         return reviewRepository.findByUserId(userId);
     }
 
+    
+    @Override
+    public String deleteReview(Integer id) {
+        Optional<Review> optional = reviewRepository.findById(id);
+        
+       Review review = optional.orElseThrow(()-> new UsernameNotFoundException("Review Not found"));
+       
+       reviewRepository.delete(review);
+       
+       return "Review with ID" +id+ "deleted successfully";
+    }
     
 }
 
