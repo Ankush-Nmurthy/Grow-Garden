@@ -54,17 +54,17 @@ The Online Plant Nursery Application is a web-based platform designed to facilit
     - User Authentication: JWT (JSON Web Tokens)
 
 ## Database
+<img src="https://github.com/Ankush-Nmurthy/deluxe-change-1738/blob/main/Growgarden%20database%20schema.svg" alt="Alt Text" width="700"/>
 
-![image](https://github.com/developerrajthakur22/efficient-veil-6767/assets/121308092/cd12379f-2bbc-42ee-908f-d1f6cc171926)
 
 
 ## Team Members
 
 This project is a collaborative effort of the following team members:
 
-- Rutwik
+- Rutwik Kumbhar
 - Ankush.N
-- Chandan
+- Chandan Singh
 - Harsh Rai
 
 ## Project Configuration
@@ -72,7 +72,7 @@ This project is a collaborative effort of the following team members:
 The project uses the following configuration for the Spring Boot application:
 
 ```properties
-server.port = 8888
+server.port = 5050
 
 spring.datasource.driver=com.mysql.cj.jdbc.Driver
 spring.datasource.url=jdbc:mysql://localhost:3306/growgarden
@@ -92,7 +92,7 @@ To run the application, follow these steps:
 
 3. Run the Spring Boot application.
 
-4. Access the application using the specified port (e.g., http://localhost:8888).
+4. Access the application using the specified port (e.g., http://localhost:5050).
 
 ## Future implementation:
 1. We can also implement Payment Gateway for this application.
