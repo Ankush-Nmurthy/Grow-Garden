@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.dto.PlanterDto;
@@ -21,26 +23,29 @@ import com.example.model.Product;
 import com.example.model.Seed;
 import com.example.responce.ApiResponse;
 import com.example.service.PlanterService;
+import com.example.service.PlanterServiceImpl;
 import com.example.service.ProductService;
 import com.example.service.UserService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("api/admin")
+@RequestMapping("/admin")
 public class AdminProductController {
 
 	private ProductService productService;
 	private UserService userService;
-	private PlanterService planterServiceInterface;
+	private PlanterService planterService;
 
 	
+	
+	@Autowired
 	public AdminProductController(ProductService productService, UserService userService,
-			PlanterService planterServiceInterface) {
+			PlanterService planterService) {
 		super();
 		this.productService = productService;
 		this.userService = userService;
-		this.planterServiceInterface = planterServiceInterface;
+		this.planterService = planterService;
 	}
 
 	@PostMapping("/plant")
@@ -76,16 +81,24 @@ public class AdminProductController {
 		List<Product> products = productService.getAllSeeds();
 		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
 	}
+	
+	@GetMapping("/planters")
+	public ResponseEntity<List<Planter>> viewAllPlanter(
+			@RequestParam(defaultValue = "0", required = false) Integer page,
+			@RequestParam(defaultValue = "10", required = false) Integer size,
+			@RequestParam(required = false) Map<String,String> map) {
+		return new ResponseEntity<List<Planter>>(planterService.viewAllPlanter(page,size,map), HttpStatus.ACCEPTED);
+	}
 
-	// admin should add the product..==========================================
+	
 	@PostMapping("/planter")
 	public ResponseEntity<Planter> addPlanter(@Valid @RequestBody Planter planter) {
-		return new ResponseEntity<Planter>(planterServiceInterface.addPlanter(planter), HttpStatus.CREATED);
+		return new ResponseEntity<Planter>(planterService.addPlanter(planter), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/planters")
 	public ResponseEntity<Planter> updatePlanter(@RequestBody PlanterDto planter) {
-		return new ResponseEntity<Planter>(planterServiceInterface.updatePlanter(planter), HttpStatus.CREATED);
+		return new ResponseEntity<Planter>(planterService.updatePlanter(planter), HttpStatus.CREATED);
 	}
 	
 

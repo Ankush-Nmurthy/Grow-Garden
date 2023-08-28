@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,18 +13,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.exception.ProductException;
+import com.example.model.Planter;
 import com.example.model.Product;
+import com.example.service.PlanterService;
 import com.example.service.ProductService;
 
 @RestController
 @RequestMapping("/api")
 public class ProductController {
 
-	@Autowired
+	
 	private ProductService productService;
+	private PlanterService planterService;
+	
+	@Autowired
+	public ProductController(ProductService productService, PlanterService planterService) {
+		super();
+		this.productService = productService;
+		this.planterService = planterService;
+	}
 
 	// baseurl/api/products?category=ssds&
+	// To Be Checked
 	@GetMapping("/products")
 	public ResponseEntity<Page<Product>> findProductByCategoryHandler(@RequestParam String category,
 			@RequestParam Integer minprice, @RequestParam Integer maxPrice, @RequestParam Integer minDiscount,
@@ -34,7 +45,6 @@ public class ProductController {
 				minDiscount, pageSize);
 
 		return new ResponseEntity<>(res, HttpStatus.ACCEPTED);
-
 	}
 
 	@GetMapping("/plants")
@@ -48,6 +58,8 @@ public class ProductController {
 		List<Product> products = productService.getAllSeeds();
 		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
 	}
+	
+	
 
 	@GetMapping("/products/id/{productId}")
 	public ResponseEntity<Product> findProductById(@PathVariable Long productId) {
@@ -69,6 +81,30 @@ public class ProductController {
 
 		return productService.getPlantsWithSortingAndPagination(type, sortField1, sortDirection1, sortField2,
 				sortDirection2, sortField3, sortDirection3, pageNo, pageSize);
+	}
+	
+	
+	@GetMapping("/planters/{planterId}")
+	public ResponseEntity<Planter> viewPlanterById(@PathVariable Integer planterId) {
+		return new ResponseEntity<Planter>(planterService.viewPlanterById(planterId), HttpStatus.ACCEPTED);
+	}
+
+	@GetMapping("/planters")
+	public ResponseEntity<List<Planter>> viewAllPlanter(
+			@RequestParam(defaultValue = "0", required = false) Integer page,
+			@RequestParam(defaultValue = "10", required = false) Integer size,
+			@RequestParam(required = false) Map<String,String> map) {
+		return new ResponseEntity<List<Planter>>(planterService.viewAllPlanter(page,size,map), HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping("/plantersBy/{shape}")
+	public ResponseEntity<List<Planter>> ViewPlanterByPlanterShape(@PathVariable String shape){
+		return new ResponseEntity<List<Planter>>(planterService.ViewPlanterByPlanterShape(shape),HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping("/planters/{min}/{max}")
+	public ResponseEntity<List<Planter>> viewAllPlantersbetweenRange(@PathVariable Double min,@PathVariable Double max){
+		return new ResponseEntity<List<Planter>>(planterService.viewAllPlantersbetweenRange(min, max),HttpStatus.ACCEPTED);
 	}
 
 }

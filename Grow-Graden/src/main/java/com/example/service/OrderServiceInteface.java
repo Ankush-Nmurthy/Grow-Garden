@@ -1,6 +1,8 @@
 package com.example.service;
 
 import java.util.List;
+
+import com.example.model.Cart;
 import com.example.model.Orders;
 
 public interface OrderServiceInteface {
@@ -10,7 +12,7 @@ public interface OrderServiceInteface {
 	 * @param orders
 	 * @return Orders
 	 */
-	Orders addOrdersFromCart(Integer userId);
+	public Cart addOrdersFromCart(Integer userId);
 	
 	/**
 	 * This method updates the orders of user for the given ordersId,

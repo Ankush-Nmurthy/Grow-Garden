@@ -8,4 +8,5 @@ import com.example.model.Cart;
 @Repository
 public interface CartRepository extends JpaRepository<Cart, Integer> {
 	public Cart findByUserId(Integer userId);
+	
 }
