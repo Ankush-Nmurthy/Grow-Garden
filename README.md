@@ -1,7 +1,7 @@
 # Grow Garden
 
 ## Project Logo:
-<img src="https://github.com/Ankush-Nmurthy/deluxe-change-1738/blob/main/WhatsApp%20Image%202023-08-22%20at%2023.31.24.jpeg" alt="Alt Text" width="700"/>
+<img src="https://github.com/Ankush-Nmurthy/deluxe-change-1738/blob/main/WhatsApp%20Image%202023-08-22%20at%2023.31.24.jpeg" alt="Alt Text" width="300"/>
 
 
 ## Introduction
