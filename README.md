@@ -1,7 +1,7 @@
 # Grow Garden
 
 ## Project Logo:
-![image](https://github.com/developerrajthakur22/efficient-veil-6767/assets/121308092/28f5fe53-2248-441a-88e3-c843d58acdaf)
+![image]([https://github.com/developerrajthakur22/efficient-veil-6767/assets/121308092/28f5fe53-2248-441a-88e3-c843d58acdaf](https://github.com/Ankush-Nmurthy/deluxe-change-1738/blob/main/img/Grow_garden_logo.jpg))
 
 ## Introduction
 
