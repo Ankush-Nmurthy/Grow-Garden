@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import com.example.dto.PlanterDto;
 import com.example.exception.PlantNotFoundException;
 import com.example.exception.PlanterNotFoundException;
-import com.example.model.Cart;
 import com.example.model.Planter;
 import com.example.repository.CartRepository;
 import com.example.repository.PlanterRepository;

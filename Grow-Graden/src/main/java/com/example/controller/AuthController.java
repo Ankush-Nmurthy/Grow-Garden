@@ -41,9 +41,5 @@ public class AuthController {
 		return new ResponseEntity<AuthResponse>(userService.userLogin(logingRequest),HttpStatus.OK );
 	}
 	
-	@PutMapping("/users/{userId}/addresses")
-	public ResponseEntity<String> userAddAddressToAccount(@PathVariable Integer userId, @RequestBody Address address){
-		System.out.println(address);
-		return new ResponseEntity<String>(userService.addAddressToUserAccount(userId, address),HttpStatus.CREATED);
-	}
+	
 }

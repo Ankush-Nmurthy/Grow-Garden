@@ -50,11 +50,16 @@ public class CartServcieImpl implements CartService {
 
 		Cart cart = cartRepository.findByUserId(cartRequest.getUserId());
 
-		if (cart == null)
+		if (cart == null) {
 			cart = new Cart();
-
+			cart.setQuantity(0);
+		}
+			
+			
+		
 		cart.getPlanterIds().add(planter.getPlanterId());
-		cart.setQuantity(cart.getQuantity()+cartRequest.getQuantity());
+		Integer totalQuntity =  cart.getQuantity()+cartRequest.getQuantity();
+		cart.setQuantity(totalQuntity);
 		cart.setTotalPrice(totalPrice);
 		cart.setUser(user);
 
@@ -71,8 +76,11 @@ public class CartServcieImpl implements CartService {
 		Product product = producopt.orElseThrow(() -> new ProductException("Product Not Found"));
 		Double totalPrice = product.getCost() * cartRequest.getQuantity();
 		Cart cart = cartRepository.findByUserId(cartRequest.getUserId());
-		if (cart == null)
+		if (cart == null) {
 			cart = new Cart();
+			cart.setQuantity(0);
+		}
+			
 		cart.getProductIds().add(product.getProductId());
 		cart.setQuantity(cart.getQuantity()+cartRequest.getQuantity());
 		cart.setTotalPrice(totalPrice);

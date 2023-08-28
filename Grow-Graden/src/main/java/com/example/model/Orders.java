@@ -3,9 +3,6 @@ package com.example.model;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,7 +12,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -34,12 +30,10 @@ public class Orders {
 	@FutureOrPresent(message = "Order date must be Futuer or present")
 	private LocalDate orderDate;
 
-	@NotBlank(message = "please provide transaction type.")
-	private String transaction;
+//	@NotBlank(message = "please provide transaction type.")
+//	private String transaction;
 
-//	@NotNull(message = "quantity should be minimum - 1")
-//	@Min(1)
-//	private Integer quantity;
+	
 
 	@NotNull(message = "cost cannot be null.")
 	private Double totalCost;
