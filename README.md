@@ -3,8 +3,6 @@
 ## Project Logo:
 ![image](https://github.com/developerrajthakur22/efficient-veil-6767/assets/121308092/28f5fe53-2248-441a-88e3-c843d58acdaf)
 
-**Netlify Link:**  <a href="https://64bd8eb175db485932ed5849--sunny-pie-ae061c.netlify.app/index.html">Tourista</a> 
-
 ## Introduction
 
 The Online Plant Nursery Application is a web-based platform designed to facilitate the purchase and management of a wide variety of plants, seeds, and planters. The application provides customers with an intuitive and user-friendly interface to browse through the available products, place orders, and manage their purchases. Additionally, the admin panel empowers administrators to efficiently manage products, customers, and overall operations.
@@ -20,12 +18,10 @@ The Online Plant Nursery Application is a web-based platform designed to facilit
 3. **Search and Filters:** Customers can use search functionality and filters to quickly locate specific products based on criteria like plant type, size, flowering season, etc.
 
 4. **Shopping Cart:** Customers can add multiple items to their shopping cart, review the cart, modify quantities, and proceed to checkout.
-
-5. **Ticket and Hotel Booking Management:** The admin can oversee ticket bookings and hotel reservations, ensuring smooth operations.
    
-6. **Order Placement:** Customers can place orders for selected items, choose shipping options, and provide delivery details.
+5. **Order Placement:** Customers can place orders for selected items, choose shipping options, and provide delivery details.
 
-7. **User Accounts:** Customers can create accounts to save their preferences, view order history, and track the status of their current orders.
+6. **User Accounts:** Customers can create accounts to save their preferences, view order history, and track the status of their current orders.
 
 ### For Admin:
 
@@ -100,8 +96,6 @@ To run the application, follow these steps:
 ## Future implementation:
 1. We can also implement Payment Gateway for this application.
 
-
-##Conclusion:
-
+## Conclusion:
 The Online Plant Nursery Application brings together plant enthusiasts and sellers, offering a convenient and seamless platform to buy and sell plants, seeds, and planters. With user-friendly interfaces for customers and administrators, the application simplifies product management, order processing, and customer interactions, creating a flourishing online community for gardening enthusiasts.
     
