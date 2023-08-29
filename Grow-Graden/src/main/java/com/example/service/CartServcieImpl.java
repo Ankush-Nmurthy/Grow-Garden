@@ -1,5 +1,6 @@
 package com.example.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,7 @@ public class CartServcieImpl implements CartService {
 		if (cart == null) {
 			cart = new Cart();
 			cart.setQuantity(0);
+			cart.setTotalPrice(0.0);
 		}
 			
 			
@@ -60,7 +62,7 @@ public class CartServcieImpl implements CartService {
 		cart.getPlanterIds().add(planter.getPlanterId());
 		Integer totalQuntity =  cart.getQuantity()+cartRequest.getQuantity();
 		cart.setQuantity(totalQuntity);
-		cart.setTotalPrice(totalPrice);
+		cart.setTotalPrice(cart.getTotalPrice()+totalPrice);
 		cart.setUser(user);
 
 		cartRepository.save(cart);
@@ -72,18 +74,19 @@ public class CartServcieImpl implements CartService {
 	public Cart addproductIntoCart(CartRequest cartRequest) {
 		Optional<User> userOpt = userRepository.findById(cartRequest.getUserId());
 		User user = userOpt.orElseThrow(() -> new UserException("Invalid User Id " + cartRequest.getUserId()));
-		Optional<Product> producopt = productRepository.findById((long) cartRequest.getProductId());
+		Optional<Product> producopt = productRepository.findById(cartRequest.getProductId());
 		Product product = producopt.orElseThrow(() -> new ProductException("Product Not Found"));
 		Double totalPrice = product.getCost() * cartRequest.getQuantity();
 		Cart cart = cartRepository.findByUserId(cartRequest.getUserId());
 		if (cart == null) {
 			cart = new Cart();
 			cart.setQuantity(0);
+			cart.setTotalPrice(0.0);
 		}
 			
 		cart.getProductIds().add(product.getProductId());
 		cart.setQuantity(cart.getQuantity()+cartRequest.getQuantity());
-		cart.setTotalPrice(totalPrice);
+		cart.setTotalPrice(cart.getTotalPrice()+totalPrice);
 		cart.setUser(user);
 
 		cartRepository.save(cart);
@@ -98,5 +101,44 @@ public class CartServcieImpl implements CartService {
 			throw new CartException("Cart of the User is empty please add some product.");
 		}
 		return user.getCart();
+	}
+
+	@Override
+	public String deleteProductCart(Integer productId , Integer userId) {
+		// TODO Auto-generated method stub
+		Cart userCart  = cartRepository.findByUserId(userId);
+		
+		 Integer quantity = 0;
+		 if(userCart.getPlanterIds().contains(productId)) {
+			
+			 Optional<Planter> optional = planterRepository.findById(productId);
+			 if(optional.isPresent()) {
+				 Planter planter = optional.get();
+				 userCart.setTotalPrice(userCart.getTotalPrice()-planter.getPlanterCost()); ;
+				 quantity++;
+				 userCart.getPlanterIds().remove(productId);
+			 }
+			
+		 }
+		
+		 if(userCart.getProductIds().contains(productId)) {
+			 Optional<Product> optional = productRepository.findById(productId);
+			 if(optional.isPresent()) {
+				 Product product = optional.get();
+				 userCart.setTotalPrice(userCart.getTotalPrice()-product.getCost());
+				 quantity++;
+				 userCart.getProductIds().remove(productId);
+			 }
+		
+			
+		 }
+		 
+		
+		 userCart.setQuantity(userCart.getQuantity()-quantity); 
+		 
+		 
+		 cartRepository.save(userCart);
+		
+		return "Product Remove Successfully";
 	}
 }

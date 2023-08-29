@@ -39,7 +39,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product findProductById(Long id) throws ProductException {
+	public Product findProductById(Integer id) throws ProductException {
 		// TODO Auto-generated method stub
 		Optional<Product> optional = productRepository.findById(id);
 		Product product = optional.orElseThrow(() -> new ProductException("Product not found with id" + id));
@@ -48,7 +48,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public String deleteProductId(Long productId) throws ProductException {
+	public String deleteProductId(Integer productId) throws ProductException {
 		// TODO Auto-generated method stub
 		Optional<Product> optional = productRepository.findById(productId);
 
@@ -59,7 +59,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product updateProduct(Long productId, Product requestProduct) throws ProductException {
+	public Product updateProduct(Integer productId, Product requestProduct) throws ProductException {
 		// TODO Auto-generated method stub
 		Optional<Product> optional = productRepository.findById(productId);
 

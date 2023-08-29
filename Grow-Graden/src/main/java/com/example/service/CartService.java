@@ -11,4 +11,6 @@ public interface CartService {
 	
 	public Cart viewCart(Integer userId);
 	
+	public String deleteProductCart(Integer productId , Integer userId);
+	
 }
