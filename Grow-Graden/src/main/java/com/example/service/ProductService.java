@@ -18,7 +18,7 @@ public interface ProductService {
 	 */
 	public Product createProduct(Product product);
 
-	public Product findProductById(Long id) throws ProductException;
+	public Product findProductById(Integer id) throws ProductException;
 
 	/**
 	 * 
@@ -26,9 +26,9 @@ public interface ProductService {
 	 * @return string value product delete or not
 	 * @throws ProductException
 	 */
-	public String deleteProductId(Long productId) throws ProductException;
+	public String deleteProductId(Integer productId) throws ProductException;
 
-	public Product updateProduct(Long productId, Product requestProduct) throws ProductException;
+	public Product updateProduct(Integer productId, Product requestProduct) throws ProductException;
 
 	public List<Product> findProductByCategory(String category);
 

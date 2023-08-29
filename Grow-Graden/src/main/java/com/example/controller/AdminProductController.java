@@ -59,7 +59,7 @@ public class AdminProductController {
 	}
 
 	@DeleteMapping("/product/{productId}")
-	public ResponseEntity<ApiResponse> deleteProduct(@PathVariable Long productId) {
+	public ResponseEntity<ApiResponse> deleteProduct(@PathVariable Integer productId) {
 		ApiResponse apiResponse = new ApiResponse(productService.deleteProductId(productId), true);
 		return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.OK);
 	}

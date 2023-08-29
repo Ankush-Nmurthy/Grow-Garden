@@ -2,16 +2,20 @@ package com.example.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.model.Cart;
 import com.example.request.CartRequest;
 import com.example.service.CartService;
+
+import jakarta.persistence.criteria.CriteriaBuilder.In;
 
 @RestController
 @RequestMapping("/cart")
@@ -40,4 +44,13 @@ public class CartController {
 	public ResponseEntity<Cart> viewUserCartUsingUserId(@PathVariable Integer userId){
 		return new ResponseEntity<Cart>(cartService.viewCart(userId),HttpStatus.OK);
 	}
+	
+	@DeleteMapping("/{productId}/{userId}")
+	public ResponseEntity<String> deleteProduct(@PathVariable Integer productId,@PathVariable Integer userId){
+		System.out.println(productId + " " + userId);
+		 return new ResponseEntity<String>(cartService.deleteProductCart(productId, userId),HttpStatus.OK);
+	
+	}
+	
+	
 }
