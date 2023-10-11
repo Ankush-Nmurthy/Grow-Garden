@@ -21,20 +21,20 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class JwtValidator extends OncePerRequestFilter {
+public class JwtTokenValidator extends OncePerRequestFilter {
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String jwt = request.getHeader(JwtConstant.JWT_HEADER);
+		String jwt = request.getHeader(JwtUtilsConstants.JWT_HEADER);
 		
 		if(jwt != null) {
 			jwt = jwt.substring(0);
 			
 			try {
-				SecretKey key = Keys.hmacShaKeyFor(JwtConstant.SECRET_KEY.getBytes());
+				SecretKey key = Keys.hmacShaKeyFor(JwtUtilsConstants.SECRET_KEY.getBytes());
 				
 				Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
 				String email = String.valueOf(claims.get("email"));

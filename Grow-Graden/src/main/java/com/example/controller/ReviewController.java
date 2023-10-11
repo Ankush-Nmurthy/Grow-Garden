@@ -1,6 +1,5 @@
 package com.example.controller;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -20,56 +19,53 @@ import com.example.service.ReviewService;
 @RestController
 public class ReviewController {
 
-    private  ReviewService reviewService;
+	private ReviewService reviewService;
 
-    @Autowired
-    public ReviewController(ReviewService reviewService) {
-        this.reviewService = reviewService;
-    }
+	@Autowired
+	public ReviewController(ReviewService reviewService) {
+		this.reviewService = reviewService;
+	}
 
-    @PostMapping("/reviews")
-    public ResponseEntity<Review> createReview(@RequestBody Review review) {
-         Review createdReview =reviewService.createReview(review);
-         
-         return new ResponseEntity<Review>(createdReview, HttpStatus.CREATED);
-         
-    }
+	@PostMapping("/reviews")
+	public ResponseEntity<Review> createReview(@RequestBody Review review) {
+		Review createdReview = reviewService.createReview(review);
 
-    @GetMapping("/reviews/{id}")
-    public ResponseEntity<List<Review>> getReviewById(@PathVariable Integer id) {
-        Optional<Review>review = reviewService.getReviewById(id);
-        
-        if (review.isPresent()) {
-            return new ResponseEntity<List<Review>>((List<Review>) review.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }        
-    }
-    
-    
-    @GetMapping("/reviews/product/{productId}")
-    public ResponseEntity<List<Review>> getReviewsByProductId(@PathVariable Integer productId) {
+		return new ResponseEntity<Review>(createdReview, HttpStatus.CREATED);
 
-    	List<Review> reviews = reviewService.getReviewsByProductId(productId);
-        
-    	
-        return new ResponseEntity<List<Review>>(reviews, HttpStatus.OK);
-    }
+	}
 
-    @GetMapping("/reviews/user/{userId}")
-    public ResponseEntity<List<Review>> getReviewsByUserId(@PathVariable Integer userId) {
+	@GetMapping("/reviews/{id}")
+	public ResponseEntity<List<Review>> getReviewById(@PathVariable Integer id) {
+		Optional<Review> review = reviewService.getReviewById(id);
 
-    	List<Review> reviews = reviewService.getReviewsByUserId(userId);
-   
-    	return new ResponseEntity<List<Review>>(reviews, HttpStatus.OK);
-   
-    	
-    }
+		if (review.isPresent()) {
+			return new ResponseEntity<List<Review>>((List<Review>) review.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 
-    @DeleteMapping("/reviews/{id}")
-    public ResponseEntity<String> deleteReview(@PathVariable Integer id) {
-            
-            return new ResponseEntity<String>(reviewService.deleteReview(id),HttpStatus.NO_CONTENT);
-       
-    }
+	@GetMapping("/reviews/product/{productId}")
+	public ResponseEntity<List<Review>> getReviewsByProductId(@PathVariable Integer productId) {
+
+		List<Review> reviews = reviewService.getReviewsByProductId(productId);
+
+		return new ResponseEntity<List<Review>>(reviews, HttpStatus.OK);
+	}
+
+	@GetMapping("/reviews/user/{userId}")
+	public ResponseEntity<List<Review>> getReviewsByUserId(@PathVariable Integer userId) {
+
+		List<Review> reviews = reviewService.getReviewsByUserId(userId);
+
+		return new ResponseEntity<List<Review>>(reviews, HttpStatus.OK);
+
+	}
+
+	@DeleteMapping("/reviews/{id}")
+	public ResponseEntity<String> deleteReview(@PathVariable Integer id) {
+
+		return new ResponseEntity<String>(reviewService.deleteReview(id), HttpStatus.NO_CONTENT);
+
+	}
 }

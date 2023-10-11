@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PlanterDto {
+public class PlanterDTO {
 	private Integer planterId;
 	private Float planterHeight;
 	private Integer planterCapacity;

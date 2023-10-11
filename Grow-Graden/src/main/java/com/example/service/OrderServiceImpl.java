@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.example.exception.CartException;
 import com.example.exception.OrderException;
 import com.example.model.Cart;
@@ -16,7 +18,8 @@ import com.example.repository.OrdersRepository;
 import com.example.repository.PlanterRepository;
 import com.example.repository.UserRepository;
 
-public class OrderServiceImplClass implements OrderServiceInteface {
+@Service
+public class OrderServiceImpl implements OrderService{
 
 	private UserRepository userRepository;
 
@@ -27,7 +30,7 @@ public class OrderServiceImplClass implements OrderServiceInteface {
 	private CartRepository cartRepository;
 
 	@Autowired
-	public OrderServiceImplClass(PlanterRepository planterRepositoryInterface,
+	public OrderServiceImpl(PlanterRepository planterRepositoryInterface,
 			OrdersRepository ordersRepository, UserRepository userRepository, CartRepository cartRepository) {
 		this.planterRepositoryInterface = planterRepositoryInterface;
 		this.ordersRepository = ordersRepository;

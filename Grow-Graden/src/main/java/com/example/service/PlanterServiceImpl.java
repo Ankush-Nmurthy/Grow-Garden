@@ -11,10 +11,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.example.dto.PlanterDto;
+import com.example.dto.PlanterDTO;
 import com.example.exception.PlantNotFoundException;
 import com.example.exception.PlanterNotFoundException;
-import com.example.model.Cart;
 import com.example.model.Planter;
 import com.example.repository.CartRepository;
 import com.example.repository.PlanterRepository;
@@ -46,7 +45,7 @@ public class PlanterServiceImpl implements PlanterService {
 	}
 
 	@Override
-	public Planter updatePlanter(PlanterDto inputplanter) {
+	public Planter updatePlanter(PlanterDTO inputplanter) {
 		if (inputplanter.getPlanterId() == null) {
 			throw new PlanterNotFoundException("Please provide a planter Id while sending the request");
 		}
@@ -116,7 +115,7 @@ public class PlanterServiceImpl implements PlanterService {
 	}
 
 	@Override
-	public List<Planter> ViewPlanterByPlanterShape(String shape) {
+	public List<Planter> viewPlanterByPlanterShape(String shape) {
 		if (shape == null) {
 			throw new PlanterNotFoundException("Please provide the properShape inorder to view planter By shape");
 		}

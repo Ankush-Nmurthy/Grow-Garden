@@ -25,19 +25,19 @@ public class CartController {
 	}
 
 	@PostMapping("/planter")
-	private ResponseEntity<Cart> addPlanterInCart(@RequestBody CartRequest cartRequest){
+	private ResponseEntity<Cart> addPlantersToCart(@RequestBody CartRequest cartRequest){
 		Cart cart =  cartService.addPlanterInCart(cartRequest);
 		return new ResponseEntity<Cart>(cart,HttpStatus.OK);
 	}
 
 	@PostMapping("/products")
-	private ResponseEntity<Cart> addProductInToCart(@RequestBody CartRequest cartRequest){
+	private ResponseEntity<Cart> addProductsToCart(@RequestBody CartRequest cartRequest){
 		Cart cart = cartService.addproductIntoCart(cartRequest);
 		return new ResponseEntity<Cart>(cart,HttpStatus.OK);
 	}
 	
 	@GetMapping("/{userId}")
-	public ResponseEntity<Cart> viewUserCartUsingUserId(@PathVariable Integer userId){
+	public ResponseEntity<Cart> viewCartUsingUserId(@PathVariable Integer userId){
 		return new ResponseEntity<Cart>(cartService.viewCart(userId),HttpStatus.OK);
 	}
 }

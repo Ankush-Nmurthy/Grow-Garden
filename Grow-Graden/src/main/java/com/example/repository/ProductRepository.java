@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
 import com.example.model.Product;
 
 @Repository
@@ -32,7 +31,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query(value = "SELECT * FROM product WHERE product_type = 'plant'" , nativeQuery = true)
 	public List<Product> getAllSeeds();
 	
-////---------Ankuh- ------------;
 	@Query(value = "SELECT * FROM product WHERE product_type = :producttype ORDER BY"
 			+ " CASE WHEN :sortField1 IS NULL THEN NULL ELSE" + "   CASE WHEN :sortField1 = 'field1' THEN field1 END"
 			+ " END :sortDirection1," + " CASE WHEN :sortField2 IS NULL THEN NULL ELSE"

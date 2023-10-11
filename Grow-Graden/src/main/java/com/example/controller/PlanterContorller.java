@@ -33,7 +33,6 @@ public class PlanterContorller {
 //		return new ResponseEntity<Cart>(PlanterService.addPlanter(userId, planterId,quantity), HttpStatus.CREATED);
 //	}
 
-
 	@DeleteMapping("/planters/{planterId}")
 	public ResponseEntity<String> deletePlaterById(@PathVariable Integer planterId) {
 		return new ResponseEntity<String>(planterService.deletePlanter(planterId), HttpStatus.OK);
@@ -53,12 +52,12 @@ public class PlanterContorller {
 	}
 	
 	@GetMapping("/plantersBy/{shape}")
-	public ResponseEntity<List<Planter>> ViewPlanterByPlanterShape(@PathVariable String shape){
-		return new ResponseEntity<List<Planter>>(planterService.ViewPlanterByPlanterShape(shape),HttpStatus.ACCEPTED);
+	public ResponseEntity<List<Planter>> viewPlanterByPlanterShape(@PathVariable String shape){
+		return new ResponseEntity<List<Planter>>(planterService.viewPlanterByPlanterShape(shape),HttpStatus.ACCEPTED);
 	}
 	
 	@GetMapping("/planters/{min}/{max}")
-	public ResponseEntity<List<Planter>> viewAllPlantersbetweenRange(@PathVariable Double min,@PathVariable Double max){
+	public ResponseEntity<List<Planter>> viewAllPlantersBetweenRange(@PathVariable Double min,@PathVariable Double max){
 		return new ResponseEntity<List<Planter>>(planterService.viewAllPlantersbetweenRange(min, max),HttpStatus.ACCEPTED);
 	}
 	

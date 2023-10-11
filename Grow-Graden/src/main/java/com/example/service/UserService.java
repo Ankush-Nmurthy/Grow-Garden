@@ -17,6 +17,11 @@ public interface UserService {
 	public AuthResponse createUser(User user) throws UserException;
 	
 	
+	/**
+	 * userLogin() method takes the LoginRequest and allow to user to get login.
+	 * @param loginRequest
+	 * @return AuthResponse 
+	 */
 	public AuthResponse userLogin(LoginRequest loginRequest);
 	
 	
@@ -25,7 +30,7 @@ public interface UserService {
 	 * @param userId
 	 * @return User 
 	 */
-	public User findUseById(Long userId) throws UserException;
+	public User findUserById(Long userId) throws UserException;
 	
 	/**
 	 * This method find user profile using jwt 

@@ -15,11 +15,12 @@ import com.example.model.User;
 import com.example.repository.UserRepository;
 
 @Service
-public class CustomeUserServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
+	
 	private UserRepository userRepository;
 
 	@Autowired
-	public CustomeUserServiceImpl(UserRepository userRepository) {
+	public UserDetailsServiceImpl(UserRepository userRepository) {
 		super();
 		this.userRepository = userRepository;
 	}

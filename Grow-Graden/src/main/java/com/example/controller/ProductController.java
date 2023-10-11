@@ -25,7 +25,7 @@ public class ProductController {
 
 	// baseurl/api/products?category=ssds&
 	@GetMapping("/products")
-	public ResponseEntity<Page<Product>> findProductByCategoryHandler(@RequestParam String category,
+	public ResponseEntity<Page<Product>> findProductByCategory(@RequestParam String category,
 			@RequestParam Integer minprice, @RequestParam Integer maxPrice, @RequestParam Integer minDiscount,
 			@RequestParam String sort, @RequestParam String stock, @RequestParam String pageNumber,
 			@RequestParam Integer pageSize) {

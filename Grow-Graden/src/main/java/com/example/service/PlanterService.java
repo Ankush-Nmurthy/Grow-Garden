@@ -3,32 +3,29 @@ package com.example.service;
 import java.util.List;
 import java.util.Map;
 
-import com.example.dto.PlanterDto;
-import com.example.model.Cart;
+import com.example.dto.PlanterDTO;
 import com.example.model.Planter;
 
 public interface PlanterService {
 
-	
-	
-	
 	/**
-	 * This method adds only planter to DataBase.
+	 * addPlanter(Planter planter) method adds only planter to DataBase.
+	 * 
 	 * @param planter
 	 * @return Planter
 	 */
 	Planter addPlanter(Planter planter);
 
 	/**
-	 * This method will Update existing Planter
+	 * updatePlanter(PlanterDTO planter) method will Update existing Planter
 	 * 
 	 * @param planter
 	 * @return Planter
 	 */
-	Planter updatePlanter(PlanterDto planter);
+	Planter updatePlanter(PlanterDTO planter);
 
 	/**
-	 * This method Deletes The Planter
+	 * deletePlanter(Integer planterId) method Deletes The Planter
 	 * 
 	 * @param planter
 	 * @return String
@@ -36,34 +33,33 @@ public interface PlanterService {
 	String deletePlanter(Integer planterId);
 
 	/**
-	 * This method will Planter by planteId
+	 * viewPlanterById(Integer planterId) method will Planter by planteId
 	 * 
 	 * @param planterId
 	 * @return Planter
 	 */
 	Planter viewPlanterById(Integer planterId);
-	
 
 	/**
-	 * This method will return all the Planter by using the page and sorting using multiple values.
+	 * viewAllPlanter(Integer pageno, Integer Size,Map<String,String> sortmap)
+	 * method will return all the Planter by using the page and sorting using
+	 * multiple values.
+	 * 
 	 * @param pageno
 	 * @param Size
 	 * @param sortmap
 	 * @return
 	 */
-	List<Planter> viewAllPlanter(Integer pageno, Integer Size,Map<String,String> sortmap);
-	
-	
+	List<Planter> viewAllPlanter(Integer pageno, Integer Size, Map<String, String> sortmap);
+
 	/**
-	 * This method will View Planter By Planter Shape
+	 * viewPlanterByPlanterShape(String shape) method will View Planter By Planter Shape
 	 * 
 	 * @param shape
 	 * @return List<Planter>
 	 */
-	List<Planter> ViewPlanterByPlanterShape(String shape);
+	List<Planter> viewPlanterByPlanterShape(String shape);
 
-	
-	
 	/**
 	 * This method will view All Planters between provided Range
 	 * 

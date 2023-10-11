@@ -26,7 +26,7 @@ public class GlobalExceptionHandler {
 		}
 		
 	  @ExceptionHandler(PlantNotFoundException.class)
-	    public ResponseEntity<ErrorDetails> plantNotfoundExceptionHandler(PlantNotFoundException pnfe, WebRequest req ){
+	    public ResponseEntity<ErrorDetails> plantNotFoundExceptionHandler(PlantNotFoundException pnfe, WebRequest req ){
 		   
 			ErrorDetails err=new ErrorDetails();
 			err.setDetails(req.getDescription(false));
@@ -37,7 +37,7 @@ public class GlobalExceptionHandler {
 		
 		
 		@ExceptionHandler(SeedNotFoundException.class)
-	    public ResponseEntity<ErrorDetails> seedNotfoundExceptionHandler(SeedNotFoundException snfe, WebRequest req ){
+	    public ResponseEntity<ErrorDetails> seedNotFoundExceptionHandler(SeedNotFoundException snfe, WebRequest req ){
 		   
 			ErrorDetails err=new ErrorDetails();
 			err.setDetails(req.getDescription(false));

@@ -1,7 +1,6 @@
 package com.example.service;
 
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,34 +10,28 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import com.example.config.JwtProvider;
+import com.example.config.JwtTokenProvider;
 import com.example.exception.UserException;
 import com.example.model.Address;
 import com.example.model.User;
 import com.example.repository.UserRepository;
 import com.example.request.LoginRequest;
 import com.example.responce.AuthResponse;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 
-
-
-
 @Service
-
 public class UserServiceImpl implements UserService {
 
 	private UserRepository userRepository;
-	private JwtProvider jwtProvider;
+	private JwtTokenProvider jwtProvider;
 	private PasswordEncoder passwordEncoder;
-	private CustomeUserServiceImpl customeUserServiceImpl;
+	private UserDetailsServiceImpl customeUserServiceImpl;
 
 	@Autowired
-	public UserServiceImpl(UserRepository userRepository, JwtProvider jwtProvider, PasswordEncoder passwordEncoder,
-			CustomeUserServiceImpl customeUserServiceImpl) {
+	public UserServiceImpl(UserRepository userRepository, JwtTokenProvider jwtProvider, PasswordEncoder passwordEncoder,
+			UserDetailsServiceImpl customeUserServiceImpl) {
 		super();
 		this.userRepository = userRepository;
 		this.jwtProvider = jwtProvider;
@@ -82,11 +75,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public AuthResponse userLogin(LoginRequest loginRequest) {
-		// TODO Auto-generated method stub
-		
-
 		Authentication authentication = authenticate(loginRequest.getEmail(), loginRequest.getPassword());
-
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		String token = jwtProvider.genrateTokan(authentication);
@@ -114,7 +103,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findUseById(Long userId) throws UserException {
+	public User findUserById(Long userId) throws UserException {
 		// TODO Auto-generated method stub
 		return null;
 	}

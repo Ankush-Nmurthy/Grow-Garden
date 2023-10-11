@@ -2,7 +2,6 @@ package com.example.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,8 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.dto.PlanterDto;
+import com.example.dto.PlanterDTO;
 import com.example.model.Plant;
 import com.example.model.Planter;
 import com.example.model.Product;
@@ -23,7 +21,6 @@ import com.example.responce.ApiResponse;
 import com.example.service.PlanterService;
 import com.example.service.ProductService;
 import com.example.service.UserService;
-
 import jakarta.validation.Valid;
 
 @RestController
@@ -77,14 +74,14 @@ public class AdminProductController {
 		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
 	}
 
-	// admin should add the product..==========================================
+	// =============== Admin should add the product..========================== //
 	@PostMapping("/planter")
 	public ResponseEntity<Planter> addPlanter(@Valid @RequestBody Planter planter) {
 		return new ResponseEntity<Planter>(planterServiceInterface.addPlanter(planter), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/planters")
-	public ResponseEntity<Planter> updatePlanter(@RequestBody PlanterDto planter) {
+	public ResponseEntity<Planter> updatePlanter(@RequestBody PlanterDTO planter) {
 		return new ResponseEntity<Planter>(planterServiceInterface.updatePlanter(planter), HttpStatus.CREATED);
 	}
 	
