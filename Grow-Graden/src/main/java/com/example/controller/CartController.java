@@ -29,24 +29,24 @@ public class CartController {
 	}
 
 	@PostMapping("/planter")
-	private ResponseEntity<Cart> addPlanterInCart(@RequestBody CartRequest cartRequest){
+	private ResponseEntity<Cart> addPlanterInCart(@RequestBody CartRequest cartRequest){			// Add a planter to the cart
 		Cart cart =  cartService.addPlanterInCart(cartRequest);
 		return new ResponseEntity<Cart>(cart,HttpStatus.OK);
 	}
 
 	@PostMapping("/products")
-	private ResponseEntity<Cart> addProductInToCart(@RequestBody CartRequest cartRequest){
+	private ResponseEntity<Cart> addProductInToCart(@RequestBody CartRequest cartRequest){			// Add a new product to the cart
 		Cart cart = cartService.addproductIntoCart(cartRequest);
 		return new ResponseEntity<Cart>(cart,HttpStatus.OK);
 	}
 	
 	@GetMapping("/{userId}")
-	public ResponseEntity<Cart> viewUserCartUsingUserId(@PathVariable Integer userId){
+	public ResponseEntity<Cart> viewUserCartUsingUserId(@PathVariable Integer userId){			// View the cart of the user
 		return new ResponseEntity<Cart>(cartService.viewCart(userId),HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{productId}/{userId}")
-	public ResponseEntity<String> deleteProduct(@PathVariable Integer productId,@PathVariable Integer userId){
+	public ResponseEntity<String> deleteProduct(@PathVariable Integer productId,@PathVariable Integer userId){		// Delete the product from the cart
 		System.out.println(productId + " " + userId);
 		 return new ResponseEntity<String>(cartService.deleteProductCart(productId, userId),HttpStatus.OK);
 	
