@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class RatingController {					// To perfrom CRUD operation on rating
+public class RatingController {					//  To perfrom CRUD operation on rating
 
 	private RatingService ratingService;
 
