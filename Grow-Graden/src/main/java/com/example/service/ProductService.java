@@ -31,7 +31,7 @@ public interface ProductService {
 	 * @return string value product delete or not
 	 * @throws ProductException
 	 */
-	public String deleteProductId(Integer productId) throws ProductException;
+	public String deleteProductById(Integer productId) throws ProductException;
 
 	/**
 	 * This method updates the product by productId and returs the Updated Product.

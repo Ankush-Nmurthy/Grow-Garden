@@ -32,6 +32,6 @@ public interface CartService {
 	 * @param userId
 	 * @return String
 	 */
-	public String deleteProductCart(Integer productId , Integer userId);
+	public String deleteProductFromUserCartUsingUserId(Integer productId , Integer userId);
 	
 }

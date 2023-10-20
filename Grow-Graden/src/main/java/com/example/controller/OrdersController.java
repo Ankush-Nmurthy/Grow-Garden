@@ -34,12 +34,12 @@ public class OrdersController {							// Orders can be controlled from the follo
 	}
 
 	@PutMapping("/{orderID}")
-	public ResponseEntity<Orders> updateOrders(@PathVariable Integer orderID) {				// update the orders
+	public ResponseEntity<Orders> updateExistingOrder(@PathVariable Integer orderID) {				// update the orders
 		return new ResponseEntity<Orders>(orderService.updateOrders(orderID),HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{orderId}")
-	public ResponseEntity<Orders> deleteOrders(@PathVariable Integer orderId){				// Delete the orders
+	public ResponseEntity<Orders> deleteOrder(@PathVariable Integer orderId){				// Delete the orders
 		return new ResponseEntity<Orders>(orderService.deleteOrders(orderId),HttpStatus.OK);
 	}
 

@@ -48,7 +48,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public String deleteProductId(Integer productId) throws ProductException {
+	public String deleteProductById(Integer productId) throws ProductException {
 		// TODO Auto-generated method stub
 		Optional<Product> optional = productRepository.findById(productId);
 
