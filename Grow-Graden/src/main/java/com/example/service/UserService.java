@@ -24,12 +24,12 @@ public interface UserService {
 	public AuthResponse userLogin(LoginRequest loginRequest);
 	
 	
-	/**
-	 * This method for find user using user id 
-	 * @param userId
-	 * @return User 
-	 */
-	public User findUseById(Long userId) throws UserException;
+	// /**
+	//  * This method for find user using user id 
+	//  * @param userId
+	//  * @return User 
+	//  */
+	// public User findUseById(Long userId) throws UserException;
 	
 	/**
 	 * This method find user profile using jwt 

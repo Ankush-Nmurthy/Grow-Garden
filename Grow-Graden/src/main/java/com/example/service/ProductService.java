@@ -42,12 +42,12 @@ public interface ProductService {
 	 */
 	public Product updateProduct(Integer productId, Product requestProduct) throws ProductException;
 
-	/**
-	 * This method finds all the product by category and returs the List<Product> products.
-	 * @param category
-	 * @return List<Product>
-	 */
-	public List<Product> findProductByCategory(String category);
+	// /**
+	//  * This method finds all the product by category and returs the List<Product> products.
+	//  * @param category
+	//  * @return List<Product>
+	//  */
+	// public List<Product> findProductByCategory(String category);
 
 	/**
 	 * This method finds all the products returs the List<Product> products.

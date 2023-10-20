@@ -73,12 +73,6 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> findProductByCategory(String category) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Page<Product> getAllProducts(String category, Integer minPrice, Integer maxPrice, Integer minDiscount,
 			String sort, String stock, Integer pageNumber, Integer pageSize) {
 		// TODO Auto-generated method stub
