@@ -1,7 +1,7 @@
 # Grow Garden
 
 ## Project Logo:
-<img src="WhatsApp%20Image%202023-08-22%20at%2023.31.24.jpeg" alt="Alt Text" width="300"/>
+<img src="" alt="Alt Text" width="300"/>
 
 
 ## Introduction
