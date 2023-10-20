@@ -1,7 +1,7 @@
 # Grow Garden
 
 ## Project Logo:
-<img src="" alt="Alt Text" width="300"/>
+<img src="https://i.ibb.co/K9Z97Dq/project-Logo.png" alt="Alt Text" width="300"/>
 
 
 ## Introduction
@@ -54,9 +54,7 @@ The Online Plant Nursery Application is a web-based platform designed to facilit
     - User Authentication: JWT (JSON Web Tokens)
 
 ## Database
-<img src="https://github.com/Ankush-Nmurthy/deluxe-change-1738/blob/main/Growgarden%20database%20schema.svg" alt="Alt Text" width="700"/>
-
-
+<img src="https://i.ibb.co/JFcZkH4/ER-Diagram.png" alt="Alt Text" width="700"/>
 
 ## Team Members
 
@@ -73,6 +71,9 @@ The project uses the following configuration for the Spring Boot application:
 
 ```properties
 server.port = 5050
+#To configuer your own server port please follow the path provided below and change the server.port value;
+#Grow-Garden/src/main/resources/application.properties
+
 
 spring.datasource.driver=com.mysql.cj.jdbc.Driver
 spring.datasource.url=jdbc:mysql://localhost:3306/growgarden
@@ -95,7 +96,8 @@ To run the application, follow these steps:
 4. Access the application using the specified port (e.g., http://localhost:5050).
 
 ## Future implementation:
-1. We can also implement Payment Gateway for this application.
+1. We are also planing to implement Payment Gateway for this application.
+2. And also an user friendly user interface.
 
 ## Conclusion:
 The Online Plant Nursery Application brings together plant enthusiasts and sellers, offering a convenient and seamless platform to buy and sell plants, seeds, and planters. With user-friendly interfaces for customers and administrators, the application simplifies product management, order processing, and customer interactions, creating a flourishing online community for gardening enthusiasts.
