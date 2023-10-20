@@ -16,7 +16,11 @@ public interface UserService {
 	 */
 	public AuthResponse createUser(User user) throws UserException;
 	
-	
+	/**
+	 * This method is for user for getting logged in to the application.
+	 * @param LoginRequest
+	 * @return AuthResponse 
+	 */
 	public AuthResponse userLogin(LoginRequest loginRequest);
 	
 	
