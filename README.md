@@ -6,7 +6,7 @@
 
 ## Introduction
 
-The Online Plant Nursery Application is a web-based platform designed to facilitate the purchase and management of a wide variety of plants, seeds, and planters. The application provides customers with an intuitive and user-friendly interface to browse through the available products, place orders, and manage their purchases. Additionally, the admin panel empowers administrators to efficiently manage products, customers, and overall operations.
+The GrowGarden Application is a web-based platform designed to facilitate the purchase and management of a wide variety of plants, seeds, and planters. The application provides customers with an intuitive and user-friendly interface to browse through the available products, place orders, and manage their purchases. Additionally, the admin endpoints empowers administrators to efficiently manage products, customers, and overall operations.
 
 ## Key Features:
 
